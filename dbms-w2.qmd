@@ -1,0 +1,123 @@
+---
+title: "DBMS - Week 2"
+format:
+    html:    
+        code-fold: true
+# jupyter: python3
+---
+
+## Lecture 2.1: Introduction to Relational Model/1
+
+### Relational Schema and Instance
+
+-   $A_{1},A_{2},...,A_{n}$ are attributes
+-   $R=(A_{1},A_{2},...,A_{n})$ is a *relational schema*
+    -   Example: $instructor(ID, name, dept_name, salary)$
+-   Formally, given sets $D_{1},D_{2},...,D_{n}$, a *relation* $r$ is a subset of $$
+    D_{1} \times D_{2} \times ... \times D_{n}
+    $$ Thus, a relation is a set of $n$-tuples $(a_{1},a_{2},...,a_{n})$ where each $a_{i} \in D_{i}$
+-   The current values (relation instance) of a relation are specified in a table
+-   Example: $instuctor \equiv (String(5) \times String \times String \times Number+)$, where $ID \in String(5)$, $name \in String$, $dept\_name \in String$, $salary \in Number+$
+
+### Relations are Unordered with Unique Tuples
+
+-   Order of tuples/rows in a relation is irrelevant (tuples may be stored in an arbitrary order)
+-   No two tuples in a relation are the same (i.e., no duplicate tuples)
+-   Example: *instructor* relation with unordered tuples
+
+| ID    | name       | dept_name  | salary |
+|-------|------------|------------|--------|
+| 22222 | Einstein   | Physics    | 95000  |
+| 12121 | Wu         | Finance    | 90000  |
+| 32343 | El Said    | History    | 60000  |
+| 45565 | Katz       | Comp. Sci. | 75000  |
+| 98345 | Kim        | Elec. Eng. | 80000  |
+| 76766 | Crick      | Biology    | 72000  |
+| 10101 | Srinivasan | Comp. Sci. | 65000  |
+| 58583 | Califieri  | History    | 62000  |
+| 82821 | Brandt     | Comp. Sci. | 92000  |
+| 15151 | Mozart     | Music      | 40000  |
+| 33456 | Gold       | Physics    | 87000  |
+| 76543 | Singh      | Finance    | 80000  |
+
+### Keys
+
+-   Let $K \subseteq R$, where $R$ is the set of attributes in the relation.
+-   $K$ is a *superkey* of $R$ if values for $K$ are sufficient to identify a unique tuple of each possible relation $r(R)$
+    -   Example: $\{ID\}$ and $\{ID, name\}$ are both superkeys of $instructor$
+-   Superkey $K$ is a *candidate key* if $K$ is minimal
+    -   Example: $\{ID\}$ is a candidate key for $instructor$
+-   One of the candidate keys is chosen as the *primary key*
+    -   Which one?
+-   A *surrogate key* or *synthetic key* in a database is a unique identifier for either an entity in the modeled world or an object in the database.
+    -   The surrogate key is not derived from application data, unlike a natural (or business) key which is derived from application data.
+
+### Keys - Example
+
+-   *Students = Roll#, First Name, Last Name, DoB, Passport#, Aadhaar#, Department*
+-   *Super Key*: Roll#, {Roll#, DoB}
+-   *Candidate Keys*: Roll#, {First Name, Last Name}, Aadhaar#
+    -   Passport# cannot be a key. Why?
+    -   Null values are allowed for Passport# (a student may not have a passport)
+-   *Primary Key*: Roll#
+    -   Can we use Aadhaar# as the primary key?
+    -   It may suffice for unique identification. But Roll# may have additional useful information. For example: 14CS92P01
+        -   Read 14CS92P01 as 14-CS-92-P-01
+        -   14: Admission in 2014
+        -   CS: Department = CS
+        -   92: Category of Student
+        -   P: Type of admission: *Project*
+        -   01: Serial Number
+
+### Keys (Contd.)
+
+-   *Foreign key constraint*: Value in one relation must appear in another
+    -   *Referencing* relation
+        -   Enrolment: Foreign keys - Roll#, Course#
+    -   *Referenced* relation
+        -   Students, Courses
+-   A *compound key* consists of more than one attribute to uniquely identify an entity occurrence
+    -   Each attribute, which makes up the key, is a simple key in its own right
+    -   {Roll#, Course#}
+
+
+| Roll # | First Name | Last Name | DoB | Passport # | Aadhaar # | Department |
+|--------|------------|-----------|-----|------------|-----------|------------|
+|        |            |           |     |            |           |            |
+
+: Students
+
+
+| Course # | Course Name | Credits | L-T-P | Department |
+|----------|-------------|---------|-------|------------|
+|          |             |         |       |            |
+
+: Courses
+
+
+| Roll # | Course # | Instructor ID |
+|--------|----------|---------------|
+|        |          |               |
+
+: Enrolment
+
+### Relational Query Languages
+
+**Procedural viz-a-viz Non-procedural or Declarative Paradigms**
+- Procedural programming requires that the programmer specify the exact steps to be taken to solve a problem.
+  - That is, *how* to get the output for the range of required inputs
+  - The programmer must know an appropriate algorithm
+
+- Declarative programming requires a more descriptive approach.
+  - The programmer must know *what* relationships hold between various entities
+
+- Example - Square root of $n$
+  - Procedural
+    - Guess $x_0$ (close to root of $n$)
+    - $i \leftarrow 0$
+    - $x_{i+1} \leftarrow \frac{(x_i + \frac{n}{x_i})}{2}$
+    - Repeat Step 2 if $|x_{i+1} - x_i| > \delta$
+  - Declarative
+    - Root of $n$ is $m$ such that $m^2 = n$
+
+## Lecture 2.2: Introduction to Relational Model/2
