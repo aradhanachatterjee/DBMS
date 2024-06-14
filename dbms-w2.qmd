@@ -80,44 +80,311 @@ format:
     -   Each attribute, which makes up the key, is a simple key in its own right
     -   {Roll#, Course#}
 
-
-| Roll # | First Name | Last Name | DoB | Passport # | Aadhaar # | Department |
-|--------|------------|-----------|-----|------------|-----------|------------|
-|        |            |           |     |            |           |            |
+| Roll \# | First Name | Last Name | DoB | Passport \# | Aadhaar \# | Department |
+|:-------:|:----------:|:---------:|:---:|:-----------:|:----------:|:----------:|
 
 : Students
 
-
-| Course # | Course Name | Credits | L-T-P | Department |
-|----------|-------------|---------|-------|------------|
-|          |             |         |       |            |
+| Course \# | Course Name | Credits | L-T-P | Department |
+|:---------:|:-----------:|:-------:|:-----:|:----------:|
 
 : Courses
 
-
-| Roll # | Course # | Instructor ID |
-|--------|----------|---------------|
-|        |          |               |
+| Roll \# | Course \# | Instructor ID |
+|:-------:|:---------:|:-------------:|
 
 : Enrolment
 
 ### Relational Query Languages
 
-**Procedural viz-a-viz Non-procedural or Declarative Paradigms**
-- Procedural programming requires that the programmer specify the exact steps to be taken to solve a problem.
-  - That is, *how* to get the output for the range of required inputs
-  - The programmer must know an appropriate algorithm
+**Procedural viz-a-viz Non-procedural or Declarative Paradigms** - Procedural programming requires that the programmer specify the exact steps to be taken to solve a problem. - That is, *how* to get the output for the range of required inputs - The programmer must know an appropriate algorithm
 
-- Declarative programming requires a more descriptive approach.
-  - The programmer must know *what* relationships hold between various entities
-
-- Example - Square root of $n$
-  - Procedural
-    - Guess $x_0$ (close to root of $n$)
-    - $i \leftarrow 0$
-    - $x_{i+1} \leftarrow \frac{(x_i + \frac{n}{x_i})}{2}$
-    - Repeat Step 2 if $|x_{i+1} - x_i| > \delta$
-  - Declarative
-    - Root of $n$ is $m$ such that $m^2 = n$
+-   Declarative programming requires a more descriptive approach.
+    -   The programmer must know *what* relationships hold between various entities
+-   Example - Square root of $n$
+    -   Procedural
+        -   Guess $x_0$ (close to root of $n$)
+        -   $i \leftarrow 0$
+        -   $x_{i+1} \leftarrow \frac{(x_i + \frac{n}{x_i})}{2}$
+        -   Repeat Step 2 if $|x_{i+1} - x_i| > \delta$
+    -   Declarative
+        -   Root of $n$ is $m$ such that $m^2 = n$
 
 ## Lecture 2.2: Introduction to Relational Model/2
+
+### Basic Properties of Relations
+
+-   A relation is a set. Hence,
+-   Ordering of tuples is immaterial
+-   All rows/tuples must be distinct
+
+### Select Operation - selection of rows (tuples)
+
+Relation $r$
+
+|   $A$    |   $B$    | $C$  | $D$  |
+|:--------:|:--------:|:----:|:----:|
+| $\alpha$ | $\alpha$ | $1$  | $7$  |
+| $\alpha$ | $\beta$  | $5$  | $7$  |
+| $\beta$  | $\beta$  | $12$ | $3$  |
+| $\beta$  | $\beta$  | $23$ | $10$ |
+
+$\sigma_{A=B \wedge D > 5}(r)$
+
+|   $A$    |   $B$    | $C$  | $D$  |
+|:--------:|:--------:|:----:|:----:|
+| $\alpha$ | $\alpha$ | $1$  | $7$  |
+| $\beta$  | $\beta$  | $23$ | $10$ |
+
+### Project Operation - selection of columns (attributes)
+
+Relation $r$
+
+|   $A$    | $B$  | $C$ |
+|:--------:|:----:|:---:|
+| $\alpha$ | $10$ | $1$ |
+| $\alpha$ | $20$ | $1$ |
+| $\beta$  | $30$ | $1$ |
+| $\beta$  | $40$ | $2$ |
+
+$\pi_{A,C}(r)$
+
+|   $A$    | $C$ |
+|:--------:|:---:|
+| $\alpha$ | $1$ |
+| $\beta$  | $1$ |
+| $\beta$  | $2$ |
+
+### Union of two relations
+
+Relation $r$
+
+|   $A$    | $B$ |
+|:--------:|:---:|
+| $\alpha$ | $1$ |
+| $\alpha$ | $2$ |
+| $\beta$  | $1$ |
+
+Relation $s$
+
+|   $A$    | $B$ |
+|:--------:|:---:|
+| $\alpha$ | $2$ |
+| $\beta$  | $3$ |
+
+$r \cup s$
+
+|   $A$    | $B$ |
+|:--------:|:---:|
+| $\alpha$ | $1$ |
+| $\alpha$ | $2$ |
+| $\beta$  | $1$ |
+| $\beta$  | $3$ |
+
+### Set Difference of two relations
+
+Relation $r$
+
+|   $A$    | $B$ |
+|:--------:|:---:|
+| $\alpha$ | $1$ |
+| $\alpha$ | $2$ |
+| $\beta$  | $1$ |
+
+Relation $s$
+
+|   $A$    | $B$ |
+|:--------:|:---:|
+| $\alpha$ | $2$ |
+| $\beta$  | $3$ |
+
+$r - s$
+
+|   $A$    | $B$ |
+|:--------:|:---:|
+| $\alpha$ | $1$ |
+| $\beta$  | $1$ |
+
+### Set Intersection of two relations
+
+Relation $r$
+
+|   $A$    | $B$ |
+|:--------:|:---:|
+| $\alpha$ | $1$ |
+| $\alpha$ | $2$ |
+| $\beta$  | $1$ |
+
+Relation $s$
+
+|   $A$    | $B$ |
+|:--------:|:---:|
+| $\alpha$ | $2$ |
+| $\beta$  | $3$ |
+
+$r \cap s$
+
+|   $A$    | $B$ |
+|:--------:|:---:|
+| $\alpha$ | $2$ |
+
+**Note**: $r \cap s = r-(r-s)$
+
+### Joining two relations - Cartesian Product
+
+Relation $r$
+
+|   $A$    | $B$ |
+|:--------:|:---:|
+| $\alpha$ | $1$ |
+| $\beta$  | $2$ |
+
+Relation $s$
+
+|   $C$    | $D$  |    $E$     |
+|:--------:|:----:|:----------:|
+| $\alpha$ | $10$ | $\text{a}$ |
+| $\beta$  | $10$ | $\text{a}$ |
+| $\beta$  | $20$ | $\text{b}$ |
+| $\gamma$ | $10$ | $\text{b}$ |
+
+$r \times s$
+
+|   $A$    | $B$ |   $C$    | $D$  |    $E$     |
+|:--------:|:---:|:--------:|:----:|:----------:|
+| $\alpha$ | $1$ | $\alpha$ | $10$ | $\text{a}$ |
+| $\alpha$ | $1$ | $\beta$  | $10$ | $\text{a}$ |
+| $\alpha$ | $1$ | $\beta$  | $20$ | $\text{b}$ |
+| $\alpha$ | $1$ | $\gamma$ | $10$ | $\text{b}$ |
+| $\beta$  | $2$ | $\alpha$ | $10$ | $\text{a}$ |
+| $\beta$  | $2$ | $\beta$  | $10$ | $\text{a}$ |
+| $\beta$  | $2$ | $\beta$  | $20$ | $\text{b}$ |
+| $\beta$  | $2$ | $\gamma$ | $10$ | $\text{b}$ |
+
+**Cartesian Product**: Naming issue
+
+Relation $r$
+
+|   $A$    | $B$ |
+|:--------:|:---:|
+| $\alpha$ | $1$ |
+| $\beta$  | $2$ |
+
+Relation $s$
+
+|   $B$    | $D$  |    $E$     |
+|:--------:|:----:|:----------:|
+| $\alpha$ | $10$ | $\text{a}$ |
+| $\beta$  | $10$ | $\text{a}$ |
+| $\beta$  | $20$ | $\text{b}$ |
+| $\gamma$ | $10$ | $\text{b}$ |
+
+$r \times s$
+
+|   $A$    | $r.B$ |  $s.B$   | $D$  |    $E$     |
+|:--------:|:-----:|:--------:|:----:|:----------:|
+| $\alpha$ |  $1$  | $\alpha$ | $10$ | $\text{a}$ |
+| $\alpha$ |  $1$  | $\beta$  | $10$ | $\text{a}$ |
+| $\alpha$ |  $1$  | $\beta$  | $20$ | $\text{b}$ |
+| $\alpha$ |  $1$  | $\gamma$ | $10$ | $\text{b}$ |
+| $\beta$  |  $2$  | $\alpha$ | $10$ | $\text{a}$ |
+| $\beta$  |  $2$  | $\beta$  | $10$ | $\text{a}$ |
+| $\beta$  |  $2$  | $\beta$  | $20$ | $\text{b}$ |
+| $\beta$  |  $2$  | $\gamma$ | $10$ | $\text{b}$ |
+
+### Renaming a table
+
+Renaming a table allows us to refer to a relation, say $E$, by more than one name. The operator $$ 
+\rho_{X}(E) $$ renames relation $E$ as $X$.
+
+Relation $r$
+
+|   $A$    | $B$ |
+|:--------:|:---:|
+| $\alpha$ | $1$ |
+| $\beta$  | $2$ |
+
+$r \times \rho_{s}(r)$
+
+|  $r.A$   | $r.B$ |  $s.A$   | $s.B$ |
+|:--------:|:-----:|:--------:|:-----:|
+| $\alpha$ |  $1$  | $\alpha$ |  $1$  |
+| $\alpha$ |  $1$  | $\beta$  |  $2$  |
+| $\beta$  |  $2$  | $\alpha$ |  $1$  |
+| $\beta$  |  $2$  | $\beta$  |  $2$  |
+
+### Composition of Operations
+
+Can build expressions using multiple operations
+
+Example: $\sigma_{A=C}(r \times s)$
+
+$r \times s$
+
+|   $A$    | $B$ |   $C$    | $D$  |    $E$     |
+|:--------:|:---:|:--------:|:----:|:----------:|
+| $\alpha$ | $1$ | $\alpha$ | $10$ | $\text{a}$ |
+| $\alpha$ | $1$ | $\beta$  | $10$ | $\text{a}$ |
+| $\alpha$ | $1$ | $\beta$  | $20$ | $\text{b}$ |
+| $\alpha$ | $1$ | $\gamma$ | $10$ | $\text{b}$ |
+| $\beta$  | $2$ | $\alpha$ | $10$ | $\text{a}$ |
+| $\beta$  | $2$ | $\beta$  | $10$ | $\text{a}$ |
+| $\beta$  | $2$ | $\beta$  | $20$ | $\text{b}$ |
+| $\beta$  | $2$ | $\gamma$ | $10$ | $\text{b}$ |
+
+$\sigma_{A=C}(r \times s)$
+
+|   $A$    | $B$ |   $C$    | $D$  |    $E$     |
+|:--------:|:---:|:--------:|:----:|:----------:|
+| $\alpha$ | $1$ | $\alpha$ | $10$ | $\text{a}$ |
+| $\beta$  | $2$ | $\beta$  | $10$ | $\text{a}$ |
+| $\beta$  | $2$ | $\beta$  | $20$ | $\text{b}$ |
+
+### Joining two relations - Natural Join
+
+-   Let $r$ and $s$ be relations on schemas $R$ and $S$ respectively. Then, the "**natural join**" of relations $R$ and $S$ is a relation on schema $R \cup S$ obtained as follows:
+-   Consider each pair of tuples $t_{r}$ from $r$ and $t_{s}$ from $s$
+-   If $t_{r}$ and $t_{s}$ have the same value on each of the attributes in $R \cap S$, add a tuple $t$ to the result, where
+    -   $t$ has the same value as $t_{r}$ on $r$
+    -   $t$ has the same value as $t_{s}$ on $s$
+
+### Natural Join Example
+
+Relation $r$
+
+|   $A$    | $B$ |   $C$    |    $D$     |
+|:--------:|:---:|:--------:|:----------:|
+| $\alpha$ | $1$ | $\alpha$ | $\text{a}$ |
+| $\beta$  | $2$ | $\gamma$ | $\text{a}$ |
+| $\gamma$ | $4$ | $\beta$  | $\text{b}$ |
+| $\alpha$ | $1$ | $\gamma$ | $\text{a}$ |
+| $\delta$ | $2$ | $\beta$  | $\text{b}$ |
+
+Relation $s$
+
+| $B$ |    $D$     |    $E$     |
+|:---:|:----------:|:----------:|
+| $1$ | $\text{a}$ |  $\alpha$  |
+| $3$ | $\text{a}$ |  $\beta$   |
+| $1$ | $\text{a}$ |  $\gamma$  |
+| $2$ | $\text{b}$ |  $\delta$  |
+| $3$ | $\text{b}$ | $\epsilon$ |
+
+Natural join - $r \bowtie s$
+
+|   $A$    | $B$ |    $C$     |    $D$     |   $E$    |
+|:--------:|:---:|:----------:|:----------:|:--------:|
+| $\alpha$ | $1$ | $\text{a}$ | $\text{a}$ | $\alpha$ |
+| $\alpha$ | $1$ |  $\alpha$  | $\text{a}$ | $\gamma$ |
+| $\alpha$ | $1$ |  $\gamma$  | $\text{a}$ | $\alpha$ |
+| $\alpha$ | $1$ |  $\gamma$  | $\text{a}$ | $\gamma$ |
+| $\delta$ | $2$ |  $\beta$   | $\text{b}$ | $\delta$ |
+
+: $\pi_{A,r.B,C,r.D,E}(\sigma_{r.B=s.B \wedge r.D=s.D}(r \times s))$
+
+### Aggregate Operators
+
+Can compute: - SUM - AVG - MAX - MIN
+
+-   Relational operators always return a relation.
+-   Aggregate operators return a single value.
