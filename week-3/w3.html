@@ -3841,7 +3841,7 @@ Done.</code></pre>
 <ul>
 <li><div class="sourceCode" id="cb95"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb95-1"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="kw">create</span> <span class="kw">table</span> student(<span class="kw">ID</span> <span class="dt">varchar</span>(<span class="dv">5</span>),</span>
 <span id="cb95-2"><a href="" aria-hidden="true" tabindex="-1"></a>    name <span class="dt">varchar</span>(<span class="dv">20</span>) <span class="kw">not</span> <span class="kw">null</span>,</span>
-<span id="cb95-3"><a href="" aria-hidden="true" tabindex="-1"></a>    dept name <span class="dt">varchar</span>(<span class="dv">20</span>),</span>
+<span id="cb95-3"><a href="" aria-hidden="true" tabindex="-1"></a>    dept_name <span class="dt">varchar</span>(<span class="dv">20</span>),</span>
 <span id="cb95-4"><a href="" aria-hidden="true" tabindex="-1"></a>    tot cred <span class="dt">numeric</span> (<span class="dv">3</span>,<span class="dv">0</span>) <span class="kw">default</span> <span class="dv">0</span>,</span>
 <span id="cb95-5"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="kw">primary</span> <span class="kw">key</span> (<span class="kw">ID</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>create index studentID index on student(ID)</p></li>
@@ -3860,7 +3860,7 @@ Done.</code></pre>
 <li><p><strong>create type</strong> construct in SQL creates user-defined type (alias, like typedef in C)</p>
 <div class="sourceCode" id="cb97"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb97-1"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="kw">create</span> <span class="kw">type</span> Dollars <span class="kw">as</span> <span class="dt">numeric</span> (<span class="dv">12</span>,<span class="dv">2</span>) final</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><div class="sourceCode" id="cb98"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb98-1"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="kw">create</span> <span class="kw">table</span> department (</span>
-<span id="cb98-2"><a href="" aria-hidden="true" tabindex="-1"></a>        dept name <span class="dt">varchar</span> (<span class="dv">20</span>),</span>
+<span id="cb98-2"><a href="" aria-hidden="true" tabindex="-1"></a>        dept_name <span class="dt">varchar</span> (<span class="dv">20</span>),</span>
 <span id="cb98-3"><a href="" aria-hidden="true" tabindex="-1"></a>        building <span class="dt">varchar</span> (<span class="dv">15</span>),</span>
 <span id="cb98-4"><a href="" aria-hidden="true" tabindex="-1"></a>        budget Dollars</span>
 <span id="cb98-5"><a href="" aria-hidden="true" tabindex="-1"></a>    );</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
@@ -3976,17 +3976,17 @@ Done.</code></pre>
 <section id="authorization-on-views" class="slide level2">
 <h2>Authorization on Views</h2>
 <ul>
-<li><div class="sourceCode" id="cb108"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb108-1"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="kw">create</span> <span class="kw">view</span> geo instructor <span class="kw">as</span></span>
+<li><div class="sourceCode" id="cb108"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb108-1"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="kw">create</span> <span class="kw">view</span> geo_instructor <span class="kw">as</span></span>
 <span id="cb108-2"><a href="" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">select</span> <span class="op">*</span></span>
 <span id="cb108-3"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="kw">from</span> instructor</span>
-<span id="cb108-4"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="kw">where</span> dept name <span class="op">=</span> ’Geology’);</span>
-<span id="cb108-5"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="kw">grant</span> <span class="kw">select</span> <span class="kw">on</span> geo instructor <span class="kw">to</span> geo staff</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p>Suppose that a geo staff member issues</p>
+<span id="cb108-4"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="kw">where</span> dept_name <span class="op">=</span> ’Geology’);</span>
+<span id="cb108-5"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="kw">grant</span> <span class="kw">select</span> <span class="kw">on</span> geo_instructor <span class="kw">to</span> geo_staff</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Suppose that a geo_staff member issues</p>
 <div class="sourceCode" id="cb109"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb109-1"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="kw">select</span> <span class="op">*</span></span>
-<span id="cb109-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="kw">from</span> geo instructor;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<span id="cb109-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="kw">from</span> geo_instructor;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>What if</p>
 <ul>
-<li>geo staff does not have permissions on instructor?</li>
+<li>geo_staff does not have permissions on instructor?</li>
 <li>creator of view did not have some permissions on instructor?</li>
 </ul></li>
 </ul>
@@ -3995,7 +3995,7 @@ Done.</code></pre>
 <h2>Other Authorization Features</h2>
 <ul>
 <li><p><strong>references</strong> privilege to create foreign key</p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb110-1"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="kw">grant</span> reference (dept name) <span class="kw">on</span> department <span class="kw">to</span> Mariano;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb110-1"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="kw">grant</span> reference (dept_name) <span class="kw">on</span> department <span class="kw">to</span> Mariano;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>why is this required?</li>
 </ul></li>
@@ -4040,9 +4040,9 @@ Done.</code></pre>
 <span id="cb111-2"><a href="" aria-hidden="true" tabindex="-1"></a>        returns <span class="dt">integer</span></span>
 <span id="cb111-3"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">begin</span></span>
 <span id="cb111-4"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="kw">declare</span> d_count <span class="dt">integer</span>;</span>
-<span id="cb111-5"><a href="" aria-hidden="true" tabindex="-1"></a>            <span class="kw">select</span> <span class="fu">count</span> (<span class="op">*</span>) <span class="kw">into</span> d <span class="fu">count</span></span>
+<span id="cb111-5"><a href="" aria-hidden="true" tabindex="-1"></a>            <span class="kw">select</span> <span class="fu">count</span> (<span class="op">*</span>) <span class="kw">into</span> d_count</span>
 <span id="cb111-6"><a href="" aria-hidden="true" tabindex="-1"></a>            <span class="kw">from</span> instructor</span>
-<span id="cb111-7"><a href="" aria-hidden="true" tabindex="-1"></a>            <span class="kw">where</span> instructor.dept name <span class="op">=</span> dept name</span>
+<span id="cb111-7"><a href="" aria-hidden="true" tabindex="-1"></a>            <span class="kw">where</span> instructor.dept_name <span class="op">=</span> dept_name</span>
 <span id="cb111-8"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="kw">return</span> d_cont;</span>
 <span id="cb111-9"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>The function dept count can be used to find the department names and budget of all departments with more that 12 instructors:</p>
@@ -4065,35 +4065,35 @@ Done.</code></pre>
 <ul>
 <li><p>Functions that return a relation as a result added in SQL:2003</p></li>
 <li><p>Return all instructors in a given department:</p>
-<div class="sourceCode" id="cb113"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb113-1"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="kw">create</span> <span class="kw">function</span> instructor <span class="kw">of</span> (dept name <span class="dt">char</span>(<span class="dv">20</span>))</span>
+<div class="sourceCode" id="cb113"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb113-1"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="kw">create</span> <span class="kw">function</span> instructor_of (dept_name <span class="dt">char</span>(<span class="dv">20</span>))</span>
 <span id="cb113-2"><a href="" aria-hidden="true" tabindex="-1"></a>    returns <span class="kw">table</span> (</span>
 <span id="cb113-3"><a href="" aria-hidden="true" tabindex="-1"></a>      <span class="kw">ID</span> <span class="dt">varchar</span>(<span class="dv">5</span>),</span>
 <span id="cb113-4"><a href="" aria-hidden="true" tabindex="-1"></a>      name <span class="dt">varchar</span>(<span class="dv">20</span>),</span>
-<span id="cb113-5"><a href="" aria-hidden="true" tabindex="-1"></a>      dept name <span class="dt">varchar</span>(<span class="dv">20</span>)</span>
+<span id="cb113-5"><a href="" aria-hidden="true" tabindex="-1"></a>      dept_name <span class="dt">varchar</span>(<span class="dv">20</span>)</span>
 <span id="cb113-6"><a href="" aria-hidden="true" tabindex="-1"></a>      salary <span class="dt">numeric</span>(<span class="dv">8</span>, <span class="dv">2</span>) )</span>
 <span id="cb113-7"><a href="" aria-hidden="true" tabindex="-1"></a>    returns <span class="kw">table</span></span>
-<span id="cb113-8"><a href="" aria-hidden="true" tabindex="-1"></a>      (<span class="kw">select</span> <span class="kw">ID</span>, name, dept name, salary</span>
+<span id="cb113-8"><a href="" aria-hidden="true" tabindex="-1"></a>      (<span class="kw">select</span> <span class="kw">ID</span>, name, dept_name, salary</span>
 <span id="cb113-9"><a href="" aria-hidden="true" tabindex="-1"></a>      <span class="kw">from</span> instructor</span>
-<span id="cb113-10"><a href="" aria-hidden="true" tabindex="-1"></a>      <span class="kw">where</span> instructor.dept name <span class="op">=</span> instructor <span class="kw">of</span>.dept name)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<span id="cb113-10"><a href="" aria-hidden="true" tabindex="-1"></a>      <span class="kw">where</span> instructor.dept_name <span class="op">=</span> instructor_of.dept_name)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Usage</p>
 <div class="sourceCode" id="cb114"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb114-1"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="kw">select</span> <span class="op">*</span></span>
-<span id="cb114-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="kw">from</span> <span class="kw">table</span> (instructor <span class="kw">of</span> (‘Music’))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<span id="cb114-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="kw">from</span> <span class="kw">table</span> (instructor_of (‘Music’))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
 </section>
 <section id="sql-procedures" class="slide level2">
 <h2>SQL Procedures</h2>
 <ul>
 <li><p>The dept count function could instead be written as procedure:</p>
-<div class="sourceCode" id="cb115"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb115-1"><a href="" aria-hidden="true" tabindex="-1"></a>      <span class="kw">create</span> <span class="kw">procedure</span> dept_count proc (</span>
+<div class="sourceCode" id="cb115"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb115-1"><a href="" aria-hidden="true" tabindex="-1"></a>      <span class="kw">create</span> <span class="kw">procedure</span> dept_count_proc (</span>
 <span id="cb115-2"><a href="" aria-hidden="true" tabindex="-1"></a>          <span class="kw">in</span> dept_name <span class="dt">varchar</span> (<span class="dv">20</span>), <span class="kw">out</span> d_count <span class="dt">integer</span>)</span>
 <span id="cb115-3"><a href="" aria-hidden="true" tabindex="-1"></a>          <span class="cf">begin</span></span>
 <span id="cb115-4"><a href="" aria-hidden="true" tabindex="-1"></a>              <span class="kw">select</span> <span class="fu">count</span>(<span class="op">*</span>) <span class="kw">into</span> d_count</span>
 <span id="cb115-5"><a href="" aria-hidden="true" tabindex="-1"></a>              <span class="kw">from</span> instructor</span>
-<span id="cb115-6"><a href="" aria-hidden="true" tabindex="-1"></a>              <span class="kw">where</span> instructor.dept name <span class="op">=</span> dept <span class="fu">count</span> proc.dept name</span>
+<span id="cb115-6"><a href="" aria-hidden="true" tabindex="-1"></a>              <span class="kw">where</span> instructor.dept_name <span class="op">=</span> dept_count_proc.dept_name</span>
 <span id="cb115-7"><a href="" aria-hidden="true" tabindex="-1"></a>          <span class="cf">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Procedures can be invoked either from an SQL procedure or from embedded SQL, using the <strong>call</strong> statement.</p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb116-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">declare</span> d <span class="fu">count</span> <span class="dt">integer</span>;</span>
-<span id="cb116-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">call</span> dept <span class="fu">count</span> proc(‘Physics’, d <span class="fu">count</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb116"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb116-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">declare</span> d_count <span class="dt">integer</span>;</span>
+<span id="cb116-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">call</span> dept_count_proc(‘Physics’, d_count);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Procedures and functions can be invoked also from dynamic SQL</p></li>
 <li><p>SQL:1999 allows <strong>overloading</strong> - more than one function/procedure of the same name as long as the number of arguments and/or the types of the arguments differ</p></li>
 </ul>
@@ -4378,7 +4378,7 @@ Done.</code></pre>
 <span id="cb125-4"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="cf">when</span> (nrow.grade <span class="op">=</span> ‘ ‘)</span>
 <span id="cb125-5"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">begin</span> atomic</span>
 <span id="cb125-6"><a href="" aria-hidden="true" tabindex="-1"></a>      <span class="kw">set</span> nrow.grade <span class="op">=</span> <span class="kw">null</span>;</span>
-<span id="cb125-7"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<span id="cb125-7"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
 </section>
 <section id="triggering-to-maintain-credits_earned-value" class="slide level2">
