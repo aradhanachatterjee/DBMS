@@ -1,0 +1,5 @@
+---
+title: "DBMS"
+---
+
+This is a collection of notes on Database Management Systems (DBMS). The notes are based on the book "Database System Concepts" by Silberschatz, Korth, and Sudarshan.

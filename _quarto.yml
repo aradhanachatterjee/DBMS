@@ -1,0 +1,24 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "DBMS"
+  sidebar:
+    collapse-level: 1
+    style: "docked"
+    search: true
+    contents:
+      - href: index.qmd
+        title: "Home"
+        contents:
+          - href: pages/w2.qmd
+            text: Week 2
+          - href: pages/w3.ipynb
+            text: Week 3
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
