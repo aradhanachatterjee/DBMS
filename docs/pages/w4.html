@@ -223,7 +223,24 @@ window.Quarto = {
   <li><a href="#universal-quantifier" id="toc-universal-quantifier" class="nav-link" data-scroll-target="#universal-quantifier">Universal Quantifier</a></li>
   <li><a href="#existential-quantifier" id="toc-existential-quantifier" class="nav-link" data-scroll-target="#existential-quantifier">Existential Quantifier</a></li>
   <li><a href="#tuple-relational-calculus" id="toc-tuple-relational-calculus" class="nav-link" data-scroll-target="#tuple-relational-calculus">Tuple Relational Calculus</a></li>
-  <li><a href="#predicate-calculus-formula" id="toc-predicate-calculus-formula" class="nav-link" data-scroll-target="#predicate-calculus-formula">Predicate Calculus Formula</a></li>
+  <li><a href="#predicate-calculus-formula" id="toc-predicate-calculus-formula" class="nav-link" data-scroll-target="#predicate-calculus-formula">Predicate Calculus Formula</a>
+  <ul class="collapse">
+  <li><a href="#trc-example" id="toc-trc-example" class="nav-link" data-scroll-target="#trc-example">TRC Example</a></li>
+  </ul></li>
+  <li><a href="#safety-of-expressions" id="toc-safety-of-expressions" class="nav-link" data-scroll-target="#safety-of-expressions">Safety of Expressions</a></li>
+  <li><a href="#domain-relational-calculus" id="toc-domain-relational-calculus" class="nav-link" data-scroll-target="#domain-relational-calculus">Domain Relational Calculus</a></li>
+  <li><a href="#equivalence-of-relational-algebra-tuple-relational-calculus-and-domain-relational-calculus" id="toc-equivalence-of-relational-algebra-tuple-relational-calculus-and-domain-relational-calculus" class="nav-link" data-scroll-target="#equivalence-of-relational-algebra-tuple-relational-calculus-and-domain-relational-calculus">Equivalence of Relational Algebra, Tuple Relational Calculus, and Domain Relational Calculus</a>
+  <ul class="collapse">
+  <li><a href="#select-operation-1" id="toc-select-operation-1" class="nav-link" data-scroll-target="#select-operation-1">Select Operation</a></li>
+  <li><a href="#project-operation-1" id="toc-project-operation-1" class="nav-link" data-scroll-target="#project-operation-1">Project Operation</a></li>
+  <li><a href="#combining-operations" id="toc-combining-operations" class="nav-link" data-scroll-target="#combining-operations">Combining Operations</a></li>
+  <li><a href="#union" id="toc-union" class="nav-link" data-scroll-target="#union">Union</a></li>
+  <li><a href="#set-difference" id="toc-set-difference" class="nav-link" data-scroll-target="#set-difference">Set Difference</a></li>
+  <li><a href="#intersection" id="toc-intersection" class="nav-link" data-scroll-target="#intersection">Intersection</a></li>
+  <li><a href="#cartesiancross-product" id="toc-cartesiancross-product" class="nav-link" data-scroll-target="#cartesiancross-product">Cartesian/Cross Product</a></li>
+  <li><a href="#natural-join" id="toc-natural-join" class="nav-link" data-scroll-target="#natural-join">Natural Join</a></li>
+  <li><a href="#division" id="toc-division" class="nav-link" data-scroll-target="#division">Division</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -288,8 +305,8 @@ window.Quarto = {
 <li><p>Notation: <span class="math inline">\(\sigma_{p}(r)\)</span></p></li>
 <li><p><span class="math inline">\(p\)</span> is called the <em>selection predicate</em></p></li>
 <li><p>Definition: <span class="math display">\[
-\sigma_{p}(r) = \{t \mid t \in r \text{ and } p(t) \}
-\]</span></p>
+  \sigma_{p}(r) = \{t \mid t \in r \text{ and } p(t) \}
+  \]</span></p>
 <p>where <span class="math inline">\(p\)</span> is a formula in propositional calculus consisting of terms connected by: <span class="math inline">\(\land\)</span> (<strong>and</strong>), <span class="math inline">\(\lor\)</span> (<strong>or</strong>), and <span class="math inline">\(\lnot\)</span> (<strong>not</strong>).</p>
 <p>Each <em>term</em> is one of:</p>
 <p>&lt; <em>attribute</em> &gt; op &lt; <em>attribute</em> &gt; or &lt; <em>constant</em> &gt;</p>
@@ -297,8 +314,8 @@ window.Quarto = {
 </ul>
 <section id="select-example" class="level3">
 <h3 class="anchored" data-anchor-id="select-example">Select Example</h3>
-<div id="ec732a2c" class="cell" data-execution_count="1">
-<div class="cell-output cell-output-display" data-execution_count="1">
+<div id="a72cd000" class="cell" data-execution_count="1">
+<div class="cell-output cell-output-display" data-execution_count="97">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
@@ -340,8 +357,8 @@ window.Quarto = {
 <p><span class="math display">\[
 r
 \]</span></p>
-<div id="4725320e" class="cell" data-execution_count="2">
-<div class="cell-output cell-output-display" data-execution_count="2">
+<div id="f8fbdc83" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display" data-execution_count="98">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
@@ -383,8 +400,8 @@ r
 </ul>
 <section id="project-example" class="level3">
 <h3 class="anchored" data-anchor-id="project-example">Project Example</h3>
-<div id="f84279f7" class="cell" data-execution_count="3">
-<div class="cell-output cell-output-display" data-execution_count="3">
+<div id="a9dfbe16" class="cell" data-execution_count="3">
+<div class="cell-output cell-output-display" data-execution_count="99">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
@@ -421,8 +438,8 @@ r
 <p><span class="math display">\[
 r
 \]</span></p>
-<div id="5b9ddf5a" class="cell" data-execution_count="4">
-<div class="cell-output cell-output-display" data-execution_count="4">
+<div id="b37bac28" class="cell" data-execution_count="4">
+<div class="cell-output cell-output-display" data-execution_count="100">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
@@ -465,8 +482,8 @@ r
 </ul>
 <section id="union-example" class="level3">
 <h3 class="anchored" data-anchor-id="union-example">Union Example</h3>
-<div id="f2e55de3" class="cell" data-execution_count="5">
-<div class="cell-output cell-output-display" data-execution_count="5">
+<div id="c4edecec" class="cell" data-execution_count="5">
+<div class="cell-output cell-output-display" data-execution_count="101">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
@@ -494,8 +511,8 @@ r
 <p><span class="math display">\[
 r
 \]</span></p>
-<div id="57647186" class="cell" data-execution_count="6">
-<div class="cell-output cell-output-display" data-execution_count="6">
+<div id="edb3b429" class="cell" data-execution_count="6">
+<div class="cell-output cell-output-display" data-execution_count="102">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
@@ -519,8 +536,8 @@ r
 <p><span class="math display">\[
 s
 \]</span></p>
-<div id="1c56766e" class="cell" data-execution_count="7">
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div id="517f6178" class="cell" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="103">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
@@ -583,8 +600,8 @@ r \cup s
 </ul>
 <section id="difference-example" class="level3">
 <h3 class="anchored" data-anchor-id="difference-example">Difference Example</h3>
-<div id="cf1c394b" class="cell" data-execution_count="8">
-<div class="cell-output cell-output-display" data-execution_count="8">
+<div id="0463e218" class="cell" data-execution_count="8">
+<div class="cell-output cell-output-display" data-execution_count="104">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
@@ -612,8 +629,8 @@ r \cup s
 <p><span class="math display">\[
 r
 \]</span></p>
-<div id="06285e1a" class="cell" data-execution_count="9">
-<div class="cell-output cell-output-display" data-execution_count="9">
+<div id="9be7d1cb" class="cell" data-execution_count="9">
+<div class="cell-output cell-output-display" data-execution_count="105">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
@@ -637,7 +654,7 @@ r
 <p><span class="math display">\[
 s
 \]</span></p>
-<div id="0d20cba1" class="cell" data-execution_count="10">
+<div id="0569dafe" class="cell" data-execution_count="10">
 <div class="cell-output cell-output-display">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
@@ -678,8 +695,8 @@ r - s
 </ul>
 <section id="intersection-example" class="level3">
 <h3 class="anchored" data-anchor-id="intersection-example">Intersection Example</h3>
-<div id="8dcacf1b" class="cell" data-execution_count="11">
-<div class="cell-output cell-output-display" data-execution_count="11">
+<div id="27b835db" class="cell" data-execution_count="11">
+<div class="cell-output cell-output-display" data-execution_count="107">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
@@ -707,8 +724,8 @@ r - s
 <p><span class="math display">\[
 r
 \]</span></p>
-<div id="dfaaadd1" class="cell" data-execution_count="12">
-<div class="cell-output cell-output-display" data-execution_count="12">
+<div id="508f090f" class="cell" data-execution_count="12">
+<div class="cell-output cell-output-display" data-execution_count="108">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
@@ -732,7 +749,7 @@ r
 <p><span class="math display">\[
 s
 \]</span></p>
-<div id="ab2422b5" class="cell" data-execution_count="13">
+<div id="ed68c826" class="cell" data-execution_count="13">
 <div class="cell-output cell-output-display">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
@@ -765,7 +782,7 @@ r \cap s
 </ul>
 <section id="cartesian-product-example" class="level3">
 <h3 class="anchored" data-anchor-id="cartesian-product-example">Cartesian-Product Example</h3>
-<div id="7dc0cd0b" class="cell" data-execution_count="14">
+<div id="492ecf8d" class="cell" data-execution_count="14">
 <div class="cell-output cell-output-display">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
@@ -790,7 +807,7 @@ r \cap s
 <p><span class="math display">\[
 r
 \]</span></p>
-<div id="21bfc868" class="cell" data-execution_count="15">
+<div id="c52026b0" class="cell" data-execution_count="15">
 <div class="cell-output cell-output-display">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
@@ -828,7 +845,7 @@ r
 <p><span class="math display">\[
 s
 \]</span></p>
-<div id="b9b73657" class="cell" data-execution_count="16">
+<div id="26a605f5" class="cell" data-execution_count="16">
 <div class="cell-output cell-output-display">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
@@ -915,14 +932,14 @@ r \times s
 <p><span class="math inline">\(\rho_{X}(E)\)</span></p>
 <p>returns the relation <span class="math inline">\(E\)</span> under the name <span class="math inline">\(X\)</span></p></li>
 <li><p>If a relational-algebra expression <span class="math inline">\(E\)</span> has arity <span class="math inline">\(n\)</span>, then <span class="math display">\[
-\rho_{X(A_1, A_2, \ldots, A_n)}(E)
-\]</span> returns the result of the expression <span class="math inline">\(E\)</span> under the name <span class="math inline">\(X\)</span>, and with the attributes renamed to <span class="math display">\[
-A_1, A_2, \ldots, A_n
-\]</span></p></li>
+  \rho_{X(A_1, A_2, \ldots, A_n)}(E)
+  \]</span> returns the result of the expression <span class="math inline">\(E\)</span> under the name <span class="math inline">\(X\)</span>, and with the attributes renamed to <span class="math display">\[
+  A_1, A_2, \ldots, A_n
+  \]</span></p></li>
 </ul>
 <section id="rename-example" class="level3">
 <h3 class="anchored" data-anchor-id="rename-example">Rename Example</h3>
-<div id="f2cf56a9" class="cell" data-execution_count="17">
+<div id="47cdb32f" class="cell" data-execution_count="17">
 <div class="cell-output cell-output-display">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
@@ -947,7 +964,7 @@ A_1, A_2, \ldots, A_n
 <p><span class="math display">\[
 r
 \]</span></p>
-<div id="5c19e54c" class="cell" data-execution_count="18">
+<div id="3b8ebc2a" class="cell" data-execution_count="18">
 <div class="cell-output cell-output-display">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
@@ -1009,8 +1026,8 @@ r \times \rho_{s}(r)
 <h3 class="anchored" data-anchor-id="division-examples">Division Examples</h3>
 <section id="example-1" class="level4">
 <h4 class="anchored" data-anchor-id="example-1">Example 1</h4>
-<div id="4dcc2325" class="cell" data-execution_count="19">
-<div class="cell-output cell-output-display" data-execution_count="19">
+<div id="02afaa13" class="cell" data-execution_count="19">
+<div class="cell-output cell-output-display" data-execution_count="115">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
@@ -1050,8 +1067,8 @@ r \times \rho_{s}(r)
 <p><span class="math display">\[
 R
 \]</span></p>
-<div id="91aa8380" class="cell" data-execution_count="20">
-<div class="cell-output cell-output-display" data-execution_count="20">
+<div id="6a6f7f39" class="cell" data-execution_count="20">
+<div class="cell-output cell-output-display" data-execution_count="116">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
@@ -1069,7 +1086,7 @@ R
 <p><span class="math display">\[
 S
 \]</span></p>
-<div id="b787f554" class="cell" data-execution_count="21">
+<div id="fa8b2107" class="cell" data-execution_count="21">
 <div class="cell-output cell-output-display">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
@@ -1094,8 +1111,8 @@ R \mid S
 </section>
 <section id="example-2" class="level4">
 <h4 class="anchored" data-anchor-id="example-2">Example 2</h4>
-<div id="69df4f82" class="cell" data-execution_count="22">
-<div class="cell-output cell-output-display" data-execution_count="22">
+<div id="d00eddf6" class="cell" data-execution_count="22">
+<div class="cell-output cell-output-display" data-execution_count="118">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
@@ -1135,8 +1152,8 @@ R \mid S
 <p><span class="math display">\[
 R
 \]</span></p>
-<div id="e8ae8db4" class="cell" data-execution_count="23">
-<div class="cell-output cell-output-display" data-execution_count="23">
+<div id="8d900f2e" class="cell" data-execution_count="23">
+<div class="cell-output cell-output-display" data-execution_count="119">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
@@ -1157,7 +1174,7 @@ R
 <p><span class="math display">\[
 S
 \]</span></p>
-<div id="3ebc274c" class="cell" data-execution_count="24">
+<div id="bac9e884" class="cell" data-execution_count="24">
 <div class="cell-output cell-output-display">
 <table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
@@ -1247,8 +1264,182 @@ R \mid S
 <li><span class="math inline">\(\forall t \in r(Q(t)) \equiv\)</span> <span class="math inline">\(Q\)</span> is true “for all” tuples <span class="math inline">\(t\)</span> in relation <span class="math inline">\(r\)</span></li>
 </ul></li>
 </ul>
+<section id="trc-example" class="level3">
+<h3 class="anchored" data-anchor-id="trc-example">TRC Example</h3>
+<table class="table">
+<caption>Student</caption>
+<thead>
+<tr class="header">
+<th>Fname</th>
+<th>Lname</th>
+<th>Age</th>
+<th>Course</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>David</td>
+<td>Sharma</td>
+<td>27</td>
+<td>DBMS</td>
+</tr>
+<tr class="even">
+<td>Aaron</td>
+<td>Lilly</td>
+<td>17</td>
+<td>Java</td>
+</tr>
+<tr class="odd">
+<td>Sahil</td>
+<td>Khan</td>
+<td>19</td>
+<td>Python</td>
+</tr>
+<tr class="even">
+<td>Sachin</td>
+<td>Rao</td>
+<td>20</td>
+<td>DBMS</td>
+</tr>
+<tr class="odd">
+<td>Varun</td>
+<td>George</td>
+<td>23</td>
+<td>Java</td>
+</tr>
+<tr class="even">
+<td>Simi</td>
+<td>Verma</td>
+<td>22</td>
+<td>Java</td>
+</tr>
+</tbody>
+</table>
+<p>Obtain the first name of students whose age is greater than 21.</p>
+<p><strong>Solution:</strong></p>
+<p><span class="math display">\[
+  \{t.Fname \mid Student(t) \land t.Age &gt; 21\}
+  \]</span> <span class="math display">\[
+  \{t.Fname \mid t \in Student \land t.Age &gt; 21\}
+  \]</span> <span class="math display">\[
+  \{t \mid \exists s \in Student(s.Age &gt; 21 \land t.Fname = s.Fname)\}
+  \]</span></p>
+</section>
+</section>
+<section id="safety-of-expressions" class="level2">
+<h2 class="anchored" data-anchor-id="safety-of-expressions">Safety of Expressions</h2>
+<ul>
+<li>It is possible to write tuple calculus expressions that generate infinite relations</li>
+<li>For example, <span class="math inline">\(\{t \mid \lnot t \in r\}\)</span> results in an infinite relation if the domain of any attribute of relation <span class="math inline">\(r\)</span> is infinite</li>
+<li>To guard against the problem, we restrict the set of allowable expressions to safe expressions</li>
+<li>An expression <span class="math inline">\(\{t \mid P(t)\}\)</span> in the tuple relational calculus is safe if every component of <span class="math inline">\(t\)</span> appears in one of the relations, tuples, or constants that appear in <span class="math inline">\(P\)</span>.
+<ul>
+<li>NOTE: this is more than just a syntax condition</li>
+<li>E.g. <span class="math inline">\(\{t \mid t[A] = 5 \lor \text{true}\}\)</span> is not safe — it defines an infinite set with attribute values that do not appear in any relation or tuples or constants in <span class="math inline">\(P\)</span></li>
+</ul></li>
+</ul>
+</section>
+<section id="domain-relational-calculus" class="level2">
+<h2 class="anchored" data-anchor-id="domain-relational-calculus">Domain Relational Calculus</h2>
+<ul>
+<li><p>A non-procedural query language equivalent in power to tuple relational calculus</p></li>
+<li><p>Each query is of the form</p>
+<p><span class="math display">\[
+  \{&lt; x_1, x_2, \ldots, x_n &gt; \mid P(x_1, x_2, \ldots, x_n)\}
+  \]</span></p>
+<ul>
+<li><span class="math inline">\(x_1, x_2, \ldots, x_n\)</span> represent domain variables</li>
+<li><span class="math inline">\(P\)</span> represents a formula similar to that of the predicate calculus</li>
+</ul></li>
+</ul>
+</section>
+<section id="equivalence-of-relational-algebra-tuple-relational-calculus-and-domain-relational-calculus" class="level2">
+<h2 class="anchored" data-anchor-id="equivalence-of-relational-algebra-tuple-relational-calculus-and-domain-relational-calculus">Equivalence of Relational Algebra, Tuple Relational Calculus, and Domain Relational Calculus</h2>
+<section id="select-operation-1" class="level3">
+<h3 class="anchored" data-anchor-id="select-operation-1">Select Operation</h3>
+<p><span class="math inline">\(R = (A, B)\)</span></p>
+<ul>
+<li><p>Relational Algebra: <span class="math inline">\(\sigma_{A = 5}(r)\)</span></p></li>
+<li><p>Tuple Relational Calculus: <span class="math inline">\(\{t \mid t \in r \land A = 5\}\)</span></p></li>
+<li><p>Domain Relational Calculus: <span class="math inline">\(\{&lt; a, b &gt; \mid &lt;a, b&gt; \in r \land a = 5\}\)</span></p></li>
+</ul>
+</section>
+<section id="project-operation-1" class="level3">
+<h3 class="anchored" data-anchor-id="project-operation-1">Project Operation</h3>
+<p><span class="math inline">\(R = (A, B)\)</span></p>
+<ul>
+<li><p>Relational Algebra: <span class="math inline">\(\Pi_{A}(r)\)</span></p></li>
+<li><p>Tuple Relational Calculus: <span class="math inline">\(\{t \mid t \exists p \in r(t[A]=p[A])\}\)</span></p></li>
+<li><p>Domain Relational Calculus: <span class="math inline">\(\{&lt; a &gt; \mid \exists b(&lt;a, b&gt; \in r)\}\)</span></p></li>
+</ul>
+</section>
+<section id="combining-operations" class="level3">
+<h3 class="anchored" data-anchor-id="combining-operations">Combining Operations</h3>
+<p><span class="math inline">\(R = (A, B)\)</span></p>
+<ul>
+<li><p>Relational Algebra: <span class="math inline">\(\Pi_{A}(\sigma_{B = 5}(r))\)</span></p></li>
+<li><p>Tuple Relational Calculus: <span class="math inline">\(\{t \mid \exists p \in r(t[A] = p[A] \land p[B] = 5)\}\)</span></p></li>
+<li><p>Domain Relational Calculus: <span class="math inline">\(\{&lt; a &gt; \mid \exists b(&lt;a, b&gt; \in r \land b = 5)\}\)</span></p></li>
+</ul>
+</section>
+<section id="union" class="level3">
+<h3 class="anchored" data-anchor-id="union">Union</h3>
+<p><span class="math inline">\(R = (A, B, C)\)</span>, <span class="math inline">\(S = (A, B, C)\)</span></p>
+<ul>
+<li><p>Relational Algebra: <span class="math inline">\(r \cup s\)</span></p></li>
+<li><p>Tuple Relational Calculus: <span class="math inline">\(\{t \mid t \in r \lor t \in s\}\)</span></p></li>
+<li><p>Domain Relational Calculus: <span class="math inline">\(\{&lt; a, b, c &gt; \mid &lt;a, b, c&gt; \in r \lor &lt;a, b, c&gt; \in s\}\)</span></p></li>
+</ul>
+</section>
+<section id="set-difference" class="level3">
+<h3 class="anchored" data-anchor-id="set-difference">Set Difference</h3>
+<p><span class="math inline">\(R = (A, B, C)\)</span>, <span class="math inline">\(S = (A, B, C)\)</span></p>
+<ul>
+<li><p>Relational Algebra: <span class="math inline">\(r - s\)</span></p></li>
+<li><p>Tuple Relational Calculus: <span class="math inline">\(\{t \mid t \in r \land t \notin s\}\)</span></p></li>
+<li><p>Domain Relational Calculus: <span class="math inline">\(\{&lt; a, b, c &gt; \mid &lt;a, b, c&gt; \in r \land &lt;a, b, c&gt; \notin s\}\)</span></p></li>
+</ul>
+</section>
+<section id="intersection" class="level3">
+<h3 class="anchored" data-anchor-id="intersection">Intersection</h3>
+<p><span class="math inline">\(R = (A, B, C)\)</span>, <span class="math inline">\(S = (A, B, C)\)</span></p>
+<ul>
+<li><p>Relational Algebra: <span class="math inline">\(r \cap s\)</span></p></li>
+<li><p>Tuple Relational Calculus: <span class="math inline">\(\{t \mid t \in r \land t \in s\}\)</span></p></li>
+<li><p>Domain Relational Calculus: <span class="math inline">\(\{&lt; a, b, c &gt; \mid &lt;a, b, c&gt; \in r \land &lt;a, b, c&gt; \in s\}\)</span></p></li>
+</ul>
+</section>
+<section id="cartesiancross-product" class="level3">
+<h3 class="anchored" data-anchor-id="cartesiancross-product">Cartesian/Cross Product</h3>
+<p><span class="math inline">\(R = (A, B)\)</span>, <span class="math inline">\(S = (C, D)\)</span></p>
+<ul>
+<li><p>Relational Algebra: <span class="math inline">\(r \times s\)</span></p></li>
+<li><p>Tuple Relational Calculus: <span class="math inline">\(\{t \mid \exists p \in r \exists q \in s(t[A] = p[A] \land t[B] = p[B] \land t[C] = q[C] \land t[D] = q[D])\}\)</span></p></li>
+<li><p>Domain Relational Calculus: <span class="math inline">\(\{&lt; a, b, c, d &gt; \mid (&lt;a, b&gt; \in r \land &lt;c, d&gt; \in s)\}\)</span></p></li>
+</ul>
+</section>
+<section id="natural-join" class="level3">
+<h3 class="anchored" data-anchor-id="natural-join">Natural Join</h3>
+<p><span class="math inline">\(R = (A, B, C, D)\)</span>, <span class="math inline">\(S = (B, D, E)\)</span></p>
+<ul>
+<li><p>Relational Algebra: <span class="math inline">\(r \bowtie s\)</span> <span class="math display">\[
+\Pi_{r.A, r.B, r.C, r.D, s.E}(\sigma_{r.B = s.B \land r.D = s.D}(r \times s))
+\]</span></p></li>
+<li><p>Tuple Relational Calculus: <span class="math inline">\(\{t \mid \exists p \in r \exists q \in s(t[A] = p[A] \land t[B] = p[B] \land t[C] = p[C] \land t[D] = p[D] \land t[E] = q[E] \land p[B] = q[B] \land p[D]=q[D])\}\)</span></p></li>
+<li><p>Domain Relational Calculus: <span class="math inline">\(\{&lt; a, b, c, d, e &gt; \mid &lt;a, b, c, d&gt; \in r \land &lt;b, d, e&gt; \in s\}\)</span></p></li>
+</ul>
+</section>
+<section id="division" class="level3">
+<h3 class="anchored" data-anchor-id="division">Division</h3>
+<p><span class="math inline">\(R = (A, B)\)</span>, <span class="math inline">\(S = (B)\)</span></p>
+<ul>
+<li><p>Relational Algebra: <span class="math inline">\(r \div s\)</span></p></li>
+<li><p>Tuple Relational Calculus: <span class="math inline">\(\{t \mid \exists p \in r(\forall q \in s(p[B] = q[B] \implies t[A] = p[A]))\}\)</span></p></li>
+<li><p>Domain Relational Calculus: <span class="math inline">\(\{&lt; a &gt; \mid &lt; a &gt; \in r \land \forall &lt;b&gt;(&lt; b &gt; \in s \implies &lt; a, b &gt; \in r)\}\)</span></p></li>
+</ul>
 
 
+</section>
 </section>
 </section>
 

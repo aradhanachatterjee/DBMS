@@ -37,19 +37,20 @@ ipynb-shell-interactivity: all
 ## Select Operation
 
 - Notation: $\sigma_{p}(r)$
+
 - $p$ is called the *selection predicate*
-- Definition:
-  $$
-  \sigma_{p}(r) = \{t \mid t \in r \text{ and } p(t) \}
-  $$
 
-  where $p$ is a formula in propositional calculus consisting  of terms connected by: $\land$ (**and**), $\lor$ (**or**), and $\lnot$ (**not**).
+- Definition: $$
+    \sigma_{p}(r) = \{t \mid t \in r \text{ and } p(t) \}
+    $$
 
-  Each *term* is one of:
+    where $p$ is a formula in propositional calculus consisting of terms connected by: $\land$ (**and**), $\lor$ (**or**), and $\lnot$ (**not**).
 
-  < *attribute* > op < *attribute* > or < *constant* >
+    Each *term* is one of:
 
-  where op is one of: $=$, $\neq$, $<$, $\leq$, $>$, $\geq$
+    \< *attribute* \> op \< *attribute* \> or \< *constant* \>
+
+    where op is one of: $=$, $\neq$, $<$, $\leq$, $>$, $\geq$
 
 ### Select Example
 
@@ -82,6 +83,7 @@ selected_df_1 = df1[(df1['A'] == df1['B']) & (df1['D'] > 5)]
 # Display the DataFrame without the index
 HTML(selected_df_1.to_html(index=False))
 ```
+
 $$
 \sigma_{A=B\wedge D>5}(r)
 $$
@@ -89,9 +91,11 @@ $$
 ## Project Operation
 
 - Notation: $\Pi_{A_1, A_2, \ldots, A_k}(r)$
-  
-  where $A_1, A_2, \ldots, A_k$ are attributes of relation $r$
+
+    where $A_1, A_2, \ldots, A_k$ are attributes of relation $r$
+
 - The result is defined as the relation of $k$ columns obtained by deleting columns other than $A_1, A_2, \ldots, A_k$ from $r$
+
 - Duplicate rows are automatically eliminated, since the result is a set
 
 ### Project Example
@@ -178,6 +182,7 @@ union_df = pd.concat([df_r, df_s]).drop_duplicates()
 HTML(union_df.to_html(index=False))
 ```
 
+````{=html}
 <!-- ```{python}
 import matplotlib.pyplot as plt
 
@@ -194,6 +199,7 @@ ax.table(cellText=union_df.values, colLabels=union_df.columns, cellLoc = 'center
 # hide the axes
 ax.axis('off')
 ``` -->
+````
 
 $$
 r \cup s
@@ -254,7 +260,6 @@ display(HTML(difference_df.to_html(index=False)))
 $$
 r - s
 $$
-
 
 ## Intersection Operation
 
@@ -381,20 +386,20 @@ $$
 ## Rename Operation
 
 - Allows us to name, and therefore to refer to, the result of a relational-algebra expression
+
 - Allows us to refer to a relation by more than one name
+
 - Example:
 
-  $\rho_{X}(E)$
+    $\rho_{X}(E)$
 
-  returns the relation $E$ under the name $X$
-- If a relational-algebra expression $E$ has arity $n$, then
-  $$
-  \rho_{X(A_1, A_2, \ldots, A_n)}(E)
-  $$
-  returns the result of the expression $E$ under the name $X$, and with the attributes renamed to
-  $$
-  A_1, A_2, \ldots, A_n
-  $$
+    returns the relation $E$ under the name $X$
+
+- If a relational-algebra expression $E$ has arity $n$, then $$
+    \rho_{X(A_1, A_2, \ldots, A_n)}(E)
+    $$ returns the result of the expression $E$ under the name $X$, and with the attributes renamed to $$
+    A_1, A_2, \ldots, A_n
+    $$
 
 ### Rename Example
 
@@ -436,7 +441,6 @@ display(HTML(cartesian_product_df.to_html(index=False)))
 $$
 r \times \rho_{s}(r)
 $$
-
 
 ## Division Operation
 
@@ -552,7 +556,6 @@ $$
 R \mid S
 $$
 
-
 ## Predicate Logic
 
 **Predicate Logic** or **Predicate Calculus** is an extension of **Propositional Logic** or **Boolean Algebra**.
@@ -580,24 +583,30 @@ In predicate logic, predicates are used alongside quantifiers to express the ext
 **Universal Quantification**: Mathematical statements sometimes assert that a property is true for all the values of a variable in a particular domain, called the **domain of discourse**
 
 - Such a statement is expressed using universal quantification.
+
 - The universal quantification of $P(x)$ for a particular domain is the proposition that asserts that $P(x)$ is true for all values of $x$ in this domain
+
 - The domain is very important here since it decides the possible values of $x$
+
 - Formally, The universal quantification of $P(x)$ is the statement “$P(x)$ for all values of $x$ in the domain”
+
 - The notation $\forall P(x)$ denotes the universal quantification of $P(x)$. Here $\forall$ is called the universal quantifier. $\forall P(x)$ is read as “for all $x$ $P(x)$”.
+
 - Example: Let $P(x)$ be the statement "$x + 2 > x$". What is the truth value of the statement $\forall x P(x)$?
 
-  Solution: As $x + 2$ is greater than $x$ for any real number, so $P(x) \equiv T$ for all $x$ or $\forall x P(x) \equiv T$
+    Solution: As $x + 2$ is greater than $x$ for any real number, so $P(x) \equiv T$ for all $x$ or $\forall x P(x) \equiv T$
 
 ## Existential Quantifier
 
 **Existential Quantification**: Some mathematical statements assert that there is an element with a certain property. Such statements are expressed by existential quantification. Existential quantification can be used to form a proposition that is true if and only if $P(x)$ is true for at least one value of $x$ in the domain.
 
 - Formally, the existential quantification of $P(x)$ is the statement "There exists an element $x$ in the domain such that $P(x)$".
+
 - The notation $\exists P(x)$ denotes the existential quantification of $P(x)$. Here $\exists$ is called the existential quantifier. $\exists P(x)$ is read as "There is at least one $x$ such that $P(x)$".
+
 - Example: Let $P(x)$ be the statement "$x^2 = 4$". What is the truth value of the statement $\exists x P(x)$?
 
-  Solution: The statement $x^2 = 4$ is true for $x = 2$ and $x = -2$. So, $\exists x$ $P(x) \equiv T$
-
+    Solution: The statement $x^2 = 4$ is true for $x = 2$ and $x = -2$. So, $\exists x$ $P(x) \equiv T$
 
 ## Tuple Relational Calculus
 
@@ -607,13 +616,9 @@ $$
 \{t \mid P(t)\}
 $$
 
-where $t =$ resulting tuples,
-$P(t) =$ known as predicate and these are the conditions that are used to fetch $t$.
-$P(t)$ may have various conditions connected by logical connectives like AND ($\land$), OR ($\lor$), and NOT ($\lnot$).
+where $t =$ resulting tuples, $P(t) =$ known as predicate and these are the conditions that are used to fetch $t$. $P(t)$ may have various conditions connected by logical connectives like AND ($\land$), OR ($\lor$), and NOT ($\lnot$).
 
-It also uses quantifiers:
-$\exists t \in r(Q(t)) =$ "there exists" a tuple $t$ in relation $r$ such that $Q(t)$ is true.
-$\forall t \in r(Q(t)) =$ "for all" tuples $t$ in relation $r$, $Q(t)$ is true.
+It also uses quantifiers: $\exists t \in r(Q(t)) =$ "there exists" a tuple $t$ in relation $r$ such that $Q(t)$ is true. $\forall t \in r(Q(t)) =$ "for all" tuples $t$ in relation $r$, $Q(t)$ is true.
 
 ## Predicate Calculus Formula
 
@@ -624,4 +629,148 @@ $\forall t \in r(Q(t)) =$ "for all" tuples $t$ in relation $r$, $Q(t)$ is true.
 - Set of quantifiers:
   - $\exists t \in r(Q(t)) \equiv$ "there exists" a tuple $t$ in relation $r$ such that $Q(t)$ is true.
   - $\forall t \in r(Q(t)) \equiv$ $Q$ is true "for all" tuples $t$ in relation $r$
+
+### TRC Example
+
+| Fname  | Lname  | Age | Course |
+|--------|--------|-----|--------|
+| David  | Sharma | 27  | DBMS   |
+| Aaron  | Lilly  | 17  | Java   |
+| Sahil  | Khan   | 19  | Python |
+| Sachin | Rao    | 20  | DBMS   |
+| Varun  | George | 23  | Java   |
+| Simi   | Verma  | 22  | Java   |
+
+: Student
+
+Obtain the first name of students whose age is greater than 21.
+
+**Solution:**
+
+  $$
+  \{t.Fname \mid Student(t) \land t.Age > 21\}
+  $$
+  $$
+  \{t.Fname \mid t \in Student \land t.Age > 21\}
+  $$
+  $$
+  \{t \mid \exists s \in Student(s.Age > 21 \land t.Fname = s.Fname)\}
+  $$
+
+## Safety of Expressions
+
+- It is possible to write tuple calculus expressions that generate infinite relations
+- For example, $\{t \mid \lnot t \in r\}$ results in an infinite relation if the domain of any attribute of relation $r$ is infinite
+- To guard against the problem, we restrict the set of allowable expressions to safe expressions
+- An expression $\{t \mid P(t)\}$ in the tuple relational calculus is safe if every component of $t$ appears in one of the relations, tuples, or constants that appear in $P$.
+  - NOTE: this is more than just a syntax condition
+  - E.g. $\{t \mid t[A] = 5 \lor \text{true}\}$ is not safe — it defines an infinite set with attribute values that do not appear in any relation or tuples or constants in $P$
+
+
+## Domain Relational Calculus
+
+- A non-procedural query language equivalent in power to tuple relational calculus
+- Each query is of the form
+
+    $$
+    \{< x_1, x_2, \ldots, x_n > \mid P(x_1, x_2, \ldots, x_n)\}
+    $$
+
+  - $x_1, x_2, \ldots, x_n$ represent domain variables
+  - $P$ represents a formula similar to that of the predicate calculus
+
+## Equivalence of Relational Algebra, Tuple Relational Calculus, and Domain Relational Calculus
+
+### Select Operation
+
+$R = (A, B)$
+
+- Relational Algebra: $\sigma_{A = 5}(r)$
+
+- Tuple Relational Calculus: $\{t \mid t \in r \land A = 5\}$
+
+- Domain Relational Calculus: $\{< a, b > \mid <a, b> \in r \land a = 5\}$
+
+### Project Operation
+
+$R = (A, B)$
+
+- Relational Algebra: $\Pi_{A}(r)$
+
+- Tuple Relational Calculus: $\{t \mid t \exists p \in r(t[A]=p[A])\}$
+
+- Domain Relational Calculus: $\{< a > \mid \exists b(<a, b> \in r)\}$
+
+### Combining Operations
+
+$R = (A, B)$
+
+- Relational Algebra: $\Pi_{A}(\sigma_{B = 5}(r))$
+
+- Tuple Relational Calculus: $\{t \mid \exists p \in r(t[A] = p[A] \land p[B] = 5)\}$
+
+- Domain Relational Calculus: $\{< a > \mid \exists b(<a, b> \in r \land b = 5)\}$
+
+### Union
+
+$R = (A, B, C)$, $S = (A, B, C)$
+
+- Relational Algebra: $r \cup s$
+
+- Tuple Relational Calculus: $\{t \mid t \in r \lor t \in s\}$
+
+- Domain Relational Calculus: $\{< a, b, c > \mid <a, b, c> \in r \lor <a, b, c> \in s\}$
+
+### Set Difference
+
+$R = (A, B, C)$, $S = (A, B, C)$
+
+- Relational Algebra: $r - s$
+
+- Tuple Relational Calculus: $\{t \mid t \in r \land t \notin s\}$
+
+- Domain Relational Calculus: $\{< a, b, c > \mid <a, b, c> \in r \land <a, b, c> \notin s\}$
+
+### Intersection
+
+$R = (A, B, C)$, $S = (A, B, C)$
+
+- Relational Algebra: $r \cap s$
+
+- Tuple Relational Calculus: $\{t \mid t \in r \land t \in s\}$
+
+- Domain Relational Calculus: $\{< a, b, c > \mid <a, b, c> \in r \land <a, b, c> \in s\}$
+
+### Cartesian/Cross Product
+
+$R = (A, B)$, $S = (C, D)$
+
+- Relational Algebra: $r \times s$
+
+- Tuple Relational Calculus: $\{t \mid \exists p \in r \exists q \in s(t[A] = p[A] \land t[B] = p[B] \land t[C] = q[C] \land t[D] = q[D])\}$
+
+- Domain Relational Calculus: $\{< a, b, c, d > \mid (<a, b> \in r \land <c, d> \in s)\}$
+
+### Natural Join
+
+$R = (A, B, C, D)$, $S = (B, D, E)$
+
+- Relational Algebra: $r \bowtie s$
+  $$
+  \Pi_{r.A, r.B, r.C, r.D, s.E}(\sigma_{r.B = s.B \land r.D = s.D}(r \times s))
+  $$
+
+- Tuple Relational Calculus: $\{t \mid \exists p \in r \exists q \in s(t[A] = p[A] \land t[B] = p[B] \land t[C] = p[C] \land t[D] = p[D] \land t[E] = q[E] \land p[B] = q[B] \land p[D]=q[D])\}$
+
+- Domain Relational Calculus: $\{< a, b, c, d, e > \mid <a, b, c, d> \in r \land <b, d, e> \in s\}$
+
+### Division
+
+$R = (A, B)$, $S = (B)$
+
+- Relational Algebra: $r \div s$
+
+- Tuple Relational Calculus: $\{t \mid \exists p \in r(\forall q \in s(p[B] = q[B] \implies t[A] = p[A]))\}$
+
+- Domain Relational Calculus: $\{< a > \mid < a > \in r \land \forall <b>(< b > \in s \implies < a, b > \in r)\}$
 
