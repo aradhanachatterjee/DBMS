@@ -448,6 +448,8 @@ $$
 
 ### Division Examples
 
+#### Example 1
+
 ```{python}
 import pandas as pd
 from IPython.display import HTML
@@ -489,6 +491,57 @@ division_df = df1.groupby('Lecturer').Module.apply(set).reset_index()
 division_df = division_df[division_df['Module'].apply(lambda x: df2['Subject'].values[0] in x)]
 division_df = division_df.drop(columns='Module')
 
+# Display the division DataFrame without the index
+display(HTML(division_df.to_html(index=False)))
+```
+
+$$
+R \mid S
+$$
+
+#### Example 2
+
+```{python}
+import pandas as pd
+from IPython.display import HTML
+data1 = {
+    'Lecturer': ['Brown', 'Brown', 'Green', 'Green', 'Lewis', 'Smith'],
+    'Module': ['Compilers', 'Databases', 'Prolog', 'Databases', 'Prolog', 'Databases']
+}
+
+# Create DataFrame
+df1 = pd.DataFrame(data1)
+
+# Display the DataFrame without the index
+HTML(df1.to_html(index=False))
+```
+
+$$
+R
+$$
+
+```{python}
+data2 = {
+    'Subject': ['Databases', 'Prolog']
+}
+
+# Create DataFrame
+df2 = pd.DataFrame(data2)
+
+# Display the DataFrame without the index
+HTML(df2.to_html(index=False))
+```
+
+$$
+S
+$$
+
+```{python}
+# Division operation
+division_df = df1.groupby('Lecturer').Module.apply(set).reset_index()
+division_df = division_df[division_df['Module'].apply(lambda x: set(df2['Subject'].values).issubset(x))]
+
+division_df = division_df.drop(columns='Module')
 # Display the division DataFrame without the index
 display(HTML(division_df.to_html(index=False)))
 ```
