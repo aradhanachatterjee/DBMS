@@ -1,5 +1,5 @@
 ---
-title: "DBMS - Week 4"
+title: "Week 4"
 format:
     html:    
         toc: true
