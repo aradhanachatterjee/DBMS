@@ -552,3 +552,76 @@ $$
 R \mid S
 $$
 
+
+## Predicate Logic
+
+**Predicate Logic** or **Predicate Calculus** is an extension of **Propositional Logic** or **Boolean Algebra**.
+
+It adds the concept of predicates and quantifiers to better capture the meaning of statements that cannot be adequately expressed using propositional logic.
+
+**Tuple Relational Calculus** and **Domain Relational Calculus** are based on **Predicate Calculus**.
+
+## Predicate
+
+- Consider the statement, “$x$ is greater than 3”. It has two parts. The first part, the variable $x$, is the subject of the statement. The second part, “is greater than 3”, is the predicate. It refers to a property that the subject of the statement can have.
+- The statement “$x$ is greater than 3” can be denoted by $P(x)$ where $P$ denotes the predicate “is greater than 3” and $x$ is the variable.
+- The predicate $P$ can be considered as a function. It tells the truth value of the statement $P(x)$ at $x$. Once a value has been assigned to the variable $x$, the statement $P(x)$ becomes a proposition and has a truth or false value.
+- In general, a statement involving $n$ variables $x_1, x_2, x_3, \ldots , x_n$ and a predicate $P$ can be denoted by $P(x_1, x_2, x_3, \ldots , x_n)$. Here $P$ is also referred to as n-place predicate or a $n$-ary predicate.
+
+## Quantifiers
+
+In predicate logic, predicates are used alongside quantifiers to express the extent to which a predicate is true over a range of elements. Using *quantifiers* to create such propositions is called *quantification*. There are two types of quantifiers:
+
+- **Universal Quantifier**
+- **Existential Quantifier**
+
+## Universal Quantifier
+
+**Universal Quantification**: Mathematical statements sometimes assert that a property is true for all the values of a variable in a particular domain, called the **domain of discourse**
+
+- Such a statement is expressed using universal quantification.
+- The universal quantification of $P(x)$ for a particular domain is the proposition that asserts that $P(x)$ is true for all values of $x$ in this domain
+- The domain is very important here since it decides the possible values of $x$
+- Formally, The universal quantification of $P(x)$ is the statement “$P(x)$ for all values of $x$ in the domain”
+- The notation $\forall P(x)$ denotes the universal quantification of $P(x)$. Here $\forall$ is called the universal quantifier. $\forall P(x)$ is read as “for all $x$ $P(x)$”.
+- Example: Let $P(x)$ be the statement "$x + 2 > x$". What is the truth value of the statement $\forall x P(x)$?
+
+  Solution: As $x + 2$ is greater than $x$ for any real number, so $P(x) \equiv T$ for all $x$ or $\forall x P(x) \equiv T$
+
+## Existential Quantifier
+
+**Existential Quantification**: Some mathematical statements assert that there is an element with a certain property. Such statements are expressed by existential quantification. Existential quantification can be used to form a proposition that is true if and only if $P(x)$ is true for at least one value of $x$ in the domain.
+
+- Formally, the existential quantification of $P(x)$ is the statement "There exists an element $x$ in the domain such that $P(x)$".
+- The notation $\exists P(x)$ denotes the existential quantification of $P(x)$. Here $\exists$ is called the existential quantifier. $\exists P(x)$ is read as "There is at least one $x$ such that $P(x)$".
+- Example: Let $P(x)$ be the statement "$x^2 = 4$". What is the truth value of the statement $\exists x P(x)$?
+
+  Solution: The statement $x^2 = 4$ is true for $x = 2$ and $x = -2$. So, $\exists x$ $P(x) \equiv T$
+
+
+## Tuple Relational Calculus
+
+TRC is a non-procedural query language, where each query is of the form
+
+$$
+\{t \mid P(t)\}
+$$
+
+where $t =$ resulting tuples,
+$P(t) =$ known as predicate and these are the conditions that are used to fetch $t$.
+$P(t)$ may have various conditions connected by logical connectives like AND ($\land$), OR ($\lor$), and NOT ($\lnot$).
+
+It also uses quantifiers:
+$\exists t \in r(Q(t)) =$ "there exists" a tuple $t$ in relation $r$ such that $Q(t)$ is true.
+$\forall t \in r(Q(t)) =$ "for all" tuples $t$ in relation $r$, $Q(t)$ is true.
+
+## Predicate Calculus Formula
+
+- Set of attributes and constants
+- Set of comparison operators: ($=$, $\neq$, $<$, $\leq$, $>$, $\geq$)
+- Set of logical connectives: and ($\land$), or($\lor$), not ($\lnot$)
+- Implication ($\implies$) : $x \implies y$, if $x$ then $y$
+- Set of quantifiers:
+  - $\exists t \in r(Q(t)) \equiv$ "there exists" a tuple $t$ in relation $r$ such that $Q(t)$ is true.
+  - $\forall t \in r(Q(t)) \equiv$ $Q$ is true "for all" tuples $t$ in relation $r$
+
