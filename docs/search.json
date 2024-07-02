@@ -2379,5 +2379,148 @@
       "DBMS",
       "Week 3"
     ]
+  },
+  {
+    "objectID": "pages/w4.html",
+    "href": "pages/w4.html",
+    "title": "DBMS - Week 4",
+    "section": "",
+    "text": "Relational Algebra\n\nProcedural and Algebra based\n\nTuple Relational Calculus\n\nNon-Procedural (Declarative) and Predicate Calculus based\n\nDomain Relational Calculus\n\nNon-Procedural (Declarative) and Predicate Calculus based\n\n\n\n\n\nRelational algebra is a procedural query language which takes relations as input and returns relation as output.\nIt was created by Edgar F. Codd at IBM in 1970.\nSix basic operators of relational algebra are:\n\nSelect (\\(\\sigma\\))\nProject (\\(\\Pi\\))\nUnion (\\(\\cup\\))\nSet Difference (\\(-\\))\nCartesian Product (\\(\\times\\))\nRename (\\(\\rho\\))\n\n\n\n\n\n\nNotation: \\(\\sigma_{p}(r)\\)\n\\(p\\) is called the selection predicate\nDefinition: \\[\n\\sigma_{p}(r) = \\{t \\mid t \\in r \\text{ and } p(t) \\}\n\\]\nwhere \\(p\\) is a formula in propositional calculus consisting of terms connected by: \\(\\land\\) (and), \\(\\lor\\) (or), and \\(\\lnot\\) (not).\nEach term is one of:\n&lt; attribute &gt; op &lt; attribute &gt; or &lt; constant &gt;\nwhere op is one of: \\(=\\), \\(\\neq\\), \\(&lt;\\), \\(\\leq\\), \\(&gt;\\), \\(\\geq\\)\n\n\n\n\n\nCode\nimport pandas as pd\nfrom IPython.display import HTML\ndata1 = {\n    'A': ['α', 'α', 'β', 'β'],\n    'B': ['α', 'β', 'β', 'β'],\n    'C': [1, 5, 12, 23],\n    'D': [7, 7, 3, 10]\n}\n\n# Create DataFrame\ndf1 = pd.DataFrame(data1)\n\n# Display the DataFrame without the index\nHTML(df1.to_html(index=False))\n# print(df1.to_string(index=False))\n\n\n\n\n\nA\nB\nC\nD\n\n\n\n\nα\nα\n1\n7\n\n\nα\nβ\n5\n7\n\n\nβ\nβ\n12\n3\n\n\nβ\nβ\n23\n10\n\n\n\n\n\n\\[\nr\n\\]\n\n\nCode\n# Selection operation: A = B and D &gt; 5\nselected_df_1 = df1[(df1['A'] == df1['B']) & (df1['D'] &gt; 5)]\n\n# Display the DataFrame without the index\nHTML(selected_df_1.to_html(index=False))\n\n\n\n\n\nA\nB\nC\nD\n\n\n\n\nα\nα\n1\n7\n\n\nβ\nβ\n23\n10\n\n\n\n\n\n\\[\n\\sigma_{A=B\\wedge D&gt;5}(r)\n\\]\n\n\n\n\n\nNotation: \\(\\Pi_{A_1, A_2, \\ldots, A_k}(r)\\)\nwhere \\(A_1, A_2, \\ldots, A_k\\) are attributes of relation \\(r\\)\nThe result is defined as the relation of \\(k\\) columns obtained by deleting columns other than \\(A_1, A_2, \\ldots, A_k\\) from \\(r\\)\nDuplicate rows are automatically eliminated, since the result is a set\n\n\n\n\n\nCode\nrelation2 = {\n    'A': ['α', 'α', 'β', 'β'],\n    'B': [10, 20, 30, 40],\n    'C': [1, 1, 1, 2]\n}\n\n# Create DataFrame\ndf2 = pd.DataFrame(relation2)\n\n# Display the DataFrame without the index\nHTML(df2.to_html(index=False))\n\n\n\n\n\nA\nB\nC\n\n\n\n\nα\n10\n1\n\n\nα\n20\n1\n\n\nβ\n30\n1\n\n\nβ\n40\n2\n\n\n\n\n\n\\[\nr\n\\]\n\n\nCode\nprojected_df_1 = df2[['A', 'C']].drop_duplicates()\n\n# Display the projected DataFrame without duplicates\nHTML(projected_df_1.to_html(index=False))\n\n\n\n\n\nA\nC\n\n\n\n\nα\n1\n\n\nβ\n1\n\n\nβ\n2\n\n\n\n\n\n\\[\n\\Pi_{A, C}(r)\n\\]\n\n\n\n\n\nNotation: \\(r \\cup s\\)\nDefined as: \\(r \\cup s = \\{t \\mid t \\in r \\text{ or } t \\in s \\}\\)\nFor \\(r \\cup s\\) to be valid\n\n\\(r\\) and \\(s\\) must have the same arity (same number of attributes)\nThe attribute domains must be compatible (same type)\n\n\n\n\n\n\nCode\nr = {\n    'A': ['α', 'α', 'β'],\n    'B': [1, 2, 1]\n}\n\n# Create DataFrame\ndf_r = pd.DataFrame(r)\n\n\ns = {\n    'A': ['α', 'β'],\n    'B': [2, 3]\n}\n\n# Create DataFrame\ndf_s = pd.DataFrame(s)\n\n# Display the DataFrame without the index\nHTML(df_r.to_html(index=False))\n\n\n\n\n\nA\nB\n\n\n\n\nα\n1\n\n\nα\n2\n\n\nβ\n1\n\n\n\n\n\n\\[\nr\n\\]\n\n\nCode\n# Display the DataFrame without the index\nHTML(df_s.to_html(index=False))\n\n\n\n\n\nA\nB\n\n\n\n\nα\n2\n\n\nβ\n3\n\n\n\n\n\n\\[\ns\n\\]\n\n\nCode\n# Union operation\nunion_df = pd.concat([df_r, df_s]).drop_duplicates()\n\n# Display the DataFrame without the index\nHTML(union_df.to_html(index=False))\n\n\n\n\n\nA\nB\n\n\n\n\nα\n1\n\n\nα\n2\n\n\nβ\n1\n\n\nβ\n3\n\n\n\n\n\n\n\\[\nr \\cup s\n\\]\n\n\n\n\n\nNotation: \\(r - s\\)\nDefined as: \\(r - s = \\{t \\mid t \\in r \\text{ and } t \\notin s \\}\\)\nSet differences must be taken between compatible relations\n\n\\(r\\) and \\(s\\) must have the same arity\nThe attribute domains must be compatible\n\n\n\n\n\n\nCode\nr = {\n    'A': ['α', 'α', 'β'],\n    'B': [1, 2, 1]\n}\n\n# Create DataFrame\ndf_r = pd.DataFrame(r)\n\ns = {\n    'A': ['α', 'β'],\n    'B': [2, 3]\n}\n\n# Create DataFrame\ndf_s = pd.DataFrame(s)\n\n# Display the DataFrame without the index\nHTML(df_r.to_html(index=False))\n\n\n\n\n\nA\nB\n\n\n\n\nα\n1\n\n\nα\n2\n\n\nβ\n1\n\n\n\n\n\n\\[\nr\n\\]\n\n\nCode\n# Display the DataFrame without the index\nHTML(df_s.to_html(index=False))\n\n\n\n\n\nA\nB\n\n\n\n\nα\n2\n\n\nβ\n3\n\n\n\n\n\n\\[\ns\n\\]\n\n\nCode\n# Difference operation\ndifference_df = df_r.merge(df_s, on=['A', 'B'], how='left', indicator=True).query('_merge == \"left_only\"').drop(columns=['_merge'])\n\n# Display the set difference DataFrame without the index\ndisplay(HTML(difference_df.to_html(index=False)))\n\n\n\n\n\nA\nB\n\n\n\n\nα\n1\n\n\nβ\n1\n\n\n\n\n\n\\[\nr - s\n\\]\n\n\n\n\n\nNotation: \\(r \\cap s\\)\nDefined as: \\(r \\cap s = \\{t \\mid t \\in r \\text{ and } t \\in s \\}\\)\nAssume:\n\n\\(r\\), \\(s\\) have the same arity\nAttributes of \\(r\\) and \\(s\\) are compatible\n\nNote: \\(r \\cap s = r - (r - s)\\)\n\n\n\n\n\nCode\nimport pandas as pd\nfrom IPython.display import HTML\n\n# Relation r\nr = {\n    'A': ['α', 'α', 'β'],\n    'B': [1, 2, 1]\n}\n\n# Create DataFrame for r\ndf_r = pd.DataFrame(r)\n\n# Relation s\ns = {\n    'A': ['α', 'β'],\n    'B': [2, 3]\n}\n\n# Create DataFrame for s\ndf_s = pd.DataFrame(s)\n\n# Display the DataFrame without the index\nHTML(df_r.to_html(index=False))\n\n\n\n\n\nA\nB\n\n\n\n\nα\n1\n\n\nα\n2\n\n\nβ\n1\n\n\n\n\n\n\\[\nr\n\\]\n\n\nCode\n# Display the DataFrame without the index\nHTML(df_s.to_html(index=False))\n\n\n\n\n\nA\nB\n\n\n\n\nα\n2\n\n\nβ\n3\n\n\n\n\n\n\\[\ns\n\\]\n\n\nCode\n# Intersection operation\nintersection_df = pd.merge(df_r, df_s, on=['A', 'B'], how='inner')\n\n# Display the intersection DataFrame without the index\ndisplay(HTML(intersection_df.to_html(index=False)))\n\n\n\n\n\nA\nB\n\n\n\n\nα\n2\n\n\n\n\n\n\\[\nr \\cap s\n\\]\n\n\n\n\n\nNotation: \\(r \\times s\\)\nDefined as: \\(r \\times s = \\{t_1, t_2 \\mid t_1 \\in r \\text{ and } t_2 \\in s \\}\\)\nAssume that attributes of \\(r\\) and \\(s\\) are disjoint (no common attributes)\nIf attributes are not disjoint, use rename operation to make them disjoint\n\n\n\n\n\nCode\nimport pandas as pd\nfrom IPython.display import HTML\n\n# Relation r\nr = {\n    'A': ['α', 'β'],\n    'B': [1, 2]\n}\n\n# Create DataFrame for r\ndf_r = pd.DataFrame(r)\n\n# Relation s\ns = {\n    'C': ['α', 'β', 'β', 'γ'],\n    'D': [10, 10, 20, 10],\n    'E': ['a', 'a', 'b', 'b']\n}\n\n# Create DataFrame for s\ndf_s = pd.DataFrame(s)\n\n# Display the original DataFrames without the index\ndisplay(HTML(df_r.to_html(index=False)))\n\n\n\n\n\nA\nB\n\n\n\n\nα\n1\n\n\nβ\n2\n\n\n\n\n\n\\[\nr\n\\]\n\n\nCode\ndisplay(HTML(df_s.to_html(index=False)))\n\n\n\n\n\nC\nD\nE\n\n\n\n\nα\n10\na\n\n\nβ\n10\na\n\n\nβ\n20\nb\n\n\nγ\n10\nb\n\n\n\n\n\n\\[\ns\n\\]\n\n\nCode\n# Cartesian product of df_r and df_s\ncartesian_product_df = pd.merge(df_r.assign(key=1), df_s.assign(key=1), on='key').drop('key', axis=1)\n\n# Display the Cartesian product DataFrame without the index\ndisplay(HTML(cartesian_product_df.to_html(index=False)))\n\n\n\n\n\nA\nB\nC\nD\nE\n\n\n\n\nα\n1\nα\n10\na\n\n\nα\n1\nβ\n10\na\n\n\nα\n1\nβ\n20\nb\n\n\nα\n1\nγ\n10\nb\n\n\nβ\n2\nα\n10\na\n\n\nβ\n2\nβ\n10\na\n\n\nβ\n2\nβ\n20\nb\n\n\nβ\n2\nγ\n10\nb\n\n\n\n\n\n\\[\nr \\times s\n\\]\n\n\n\n\n\nAllows us to name, and therefore to refer to, the result of a relational-algebra expression\nAllows us to refer to a relation by more than one name\nExample:\n\\(\\rho_{X}(E)\\)\nreturns the relation \\(E\\) under the name \\(X\\)\nIf a relational-algebra expression \\(E\\) has arity \\(n\\), then \\[\n\\rho_{X(A_1, A_2, \\ldots, A_n)}(E)\n\\] returns the result of the expression \\(E\\) under the name \\(X\\), and with the attributes renamed to \\[\nA_1, A_2, \\ldots, A_n\n\\]\n\n\n\n\n\nCode\nimport pandas as pd\nfrom IPython.display import HTML\n\n# Relation r\nr = {\n    'A': ['α', 'β'],\n    'B': [1, 2]\n}\n\n# Create DataFrame for r\ndf_r = pd.DataFrame(r)\n\n# Relation r's duplicate relation s\ndf_s = pd.DataFrame(r)\n\n# Display the original DataFrame without the index\ndisplay(HTML(df_r.to_html(index=False)))\n\n\n\n\n\nA\nB\n\n\n\n\nα\n1\n\n\nβ\n2\n\n\n\n\n\n\\[\nr\n\\]\n\n\nCode\n# Cartesian product of df_r and df_s\ncartesian_product_df = pd.merge(df_r.assign(key=1), df_s.assign(key=1), on='key').drop('key', axis=1)\n\n# Rename the columns to make them unique\ncartesian_product_df.columns = ['r.A', 'r.B', 's.A','s.B']\n\n# Display the Cartesian product DataFrame without the index\ndisplay(HTML(cartesian_product_df.to_html(index=False)))\n\n\n\n\n\nr.A\nr.B\ns.A\ns.B\n\n\n\n\nα\n1\nα\n1\n\n\nα\n1\nβ\n2\n\n\nβ\n2\nα\n1\n\n\nβ\n2\nβ\n2\n\n\n\n\n\n\\[\nr \\times \\rho_{s}(r)\n\\]\n\n\n\n\n\nThe division operation is applied to two relations\n\\(R(Z) \\div S(X)\\), where \\(X\\) is a subset of \\(Z\\). Let \\(Y = Z - X\\) (hence \\(Z = X \\cup Y\\)); that is, let \\(Y\\) be the set of attributes of \\(R\\) that are not in \\(S\\)\nThe result of the division operation is a relation \\(T(Y)\\) that includes a tuple \\(t\\) if tuples \\(t_R\\) appear in \\(R\\) with \\(t_R[Y] = t\\), and with\n\n\\(t_R[X] = t_S\\) for all tuples \\(t_S\\) in \\(S\\)\n\nFor a tuple \\(t\\) to appear in the result \\(T\\) of the division operation, the values in \\(t\\) must appear in \\(R\\) with all possible combinations of values in \\(S\\)\nDivision is a derived operation, and can be expressed in terms of the basic operations of relational algebra\n\\(r \\div s \\equiv \\Pi_{R - S}(r) - \\Pi_{R - S}(r)((\\Pi_{R - S}(r) \\times s) - \\Pi_{R-S,S}(r))\\)\n\n\n\n\n\nCode\nimport pandas as pd\nfrom IPython.display import HTML\ndata1 = {\n    'Lecturer': ['Brown', 'Brown', 'Green', 'Green', 'Lewis', 'Smith'],\n    'Module': ['Compilers', 'Databases', 'Prolog', 'Databases', 'Prolog', 'Databases']\n}\n\n# Create DataFrame\ndf1 = pd.DataFrame(data1)\n\n# Display the DataFrame without the index\nHTML(df1.to_html(index=False))\n\n\n\n\n\nLecturer\nModule\n\n\n\n\nBrown\nCompilers\n\n\nBrown\nDatabases\n\n\nGreen\nProlog\n\n\nGreen\nDatabases\n\n\nLewis\nProlog\n\n\nSmith\nDatabases\n\n\n\n\n\n\\[\nR\n\\]\n\n\nCode\ndata2 = {\n    'Subject': ['Prolog']\n}\n\n# Create DataFrame\ndf2 = pd.DataFrame(data2)\n\n# Display the DataFrame without the index\nHTML(df2.to_html(index=False))\n\n\n\n\n\nSubject\n\n\n\n\nProlog\n\n\n\n\n\n\\[\nS\n\\]\n\n\nCode\n# Division operation\ndivision_df = df1.groupby('Lecturer').Module.apply(set).reset_index()\ndivision_df = division_df[division_df['Module'].apply(lambda x: df2['Subject'].values[0] in x)]\ndivision_df = division_df.drop(columns='Module')\n\n# Display the division DataFrame without the index\ndisplay(HTML(division_df.to_html(index=False)))\n\n\n\n\n\nLecturer\n\n\n\n\nGreen\n\n\nLewis\n\n\n\n\n\n\\[\nR \\mid S\n\\]",
+    "crumbs": [
+      "DBMS",
+      "Week 4"
+    ]
+  },
+  {
+    "objectID": "pages/w4.html#formal-relational-query-language",
+    "href": "pages/w4.html#formal-relational-query-language",
+    "title": "DBMS - Week 4",
+    "section": "",
+    "text": "Relational Algebra\n\nProcedural and Algebra based\n\nTuple Relational Calculus\n\nNon-Procedural (Declarative) and Predicate Calculus based\n\nDomain Relational Calculus\n\nNon-Procedural (Declarative) and Predicate Calculus based",
+    "crumbs": [
+      "DBMS",
+      "Week 4"
+    ]
+  },
+  {
+    "objectID": "pages/w4.html#relational-algebra",
+    "href": "pages/w4.html#relational-algebra",
+    "title": "DBMS - Week 4",
+    "section": "",
+    "text": "Relational algebra is a procedural query language which takes relations as input and returns relation as output.\nIt was created by Edgar F. Codd at IBM in 1970.\nSix basic operators of relational algebra are:\n\nSelect (\\(\\sigma\\))\nProject (\\(\\Pi\\))\nUnion (\\(\\cup\\))\nSet Difference (\\(-\\))\nCartesian Product (\\(\\times\\))\nRename (\\(\\rho\\))",
+    "crumbs": [
+      "DBMS",
+      "Week 4"
+    ]
+  },
+  {
+    "objectID": "pages/w4.html#select-operation-σ",
+    "href": "pages/w4.html#select-operation-σ",
+    "title": "DBMS - Week 4",
+    "section": "Select Operation (σ)",
+    "text": "Select Operation (σ)\n\nThe select operation selects tuples that satisfy a given predicate\nNotation: \\sigma_{p}(r)\n\nr is a relation\n\np is called the selection predicate\nDefinition: \n\\sigma_{p}(r) = \\{t \\in r \\mid p(t) = \\text{true}\\}\n\nwhere p is a formula in propositional calculus consisting of terms connected by:\n\nand ( \\land )\nor ( \\lor )\nnot ( \\lnot )",
+    "crumbs": [
+      "DBMS",
+      "Week 4"
+    ]
+  },
+  {
+    "objectID": "pages/w4.html#select-operation-sigma",
+    "href": "pages/w4.html#select-operation-sigma",
+    "title": "DBMS - Week 4",
+    "section": "",
+    "text": "Notation: \\sigma_{p}(r)\np is called the selection predicate\nDefinition: \n\\sigma_{p}(r) = \\{t \\mid t \\in r \\text{ and } p(t) \\}\n\nwhere p is a formula in propositional calculus consisting of terms connected by: \\land (and), \\lor (or), and \\lnot (not).\nEach term is one of:\n&lt; attribute &gt; op &lt; attribute &gt; or &lt; constant &gt;\nwhere op is one of: =, \\neq, &lt;, \\leq, &gt;, \\geq\nExample:\n\n\n\nA\nB\nC\nD\n\n\n\n\n\\alpha\n\\alpha\n1\n7\n\n\n\\alpha\n\\beta\n5\n7\n\n\n\\beta\n\\beta\n12\n3\n\n\n\\beta\n\\beta\n23\n10\n\n\n\n\\sigma_{A=B \\wedge D &gt; 5}(r)\n\n\n\nA\nB\nC\nD\n\n\n\n\n\\alpha\n\\alpha\n1\n7\n\n\n\\beta\n\\beta\n23\n10",
+    "crumbs": [
+      "DBMS",
+      "Week 4"
+    ]
+  },
+  {
+    "objectID": "pages/w4.html#select-operation",
+    "href": "pages/w4.html#select-operation",
+    "title": "DBMS - Week 4",
+    "section": "",
+    "text": "Notation: \\(\\sigma_{p}(r)\\)\n\\(p\\) is called the selection predicate\nDefinition: \\[\n\\sigma_{p}(r) = \\{t \\mid t \\in r \\text{ and } p(t) \\}\n\\]\nwhere \\(p\\) is a formula in propositional calculus consisting of terms connected by: \\(\\land\\) (and), \\(\\lor\\) (or), and \\(\\lnot\\) (not).\nEach term is one of:\n&lt; attribute &gt; op &lt; attribute &gt; or &lt; constant &gt;\nwhere op is one of: \\(=\\), \\(\\neq\\), \\(&lt;\\), \\(\\leq\\), \\(&gt;\\), \\(\\geq\\)\n\n\n\n\n\nCode\nimport pandas as pd\nfrom IPython.display import HTML\ndata1 = {\n    'A': ['α', 'α', 'β', 'β'],\n    'B': ['α', 'β', 'β', 'β'],\n    'C': [1, 5, 12, 23],\n    'D': [7, 7, 3, 10]\n}\n\n# Create DataFrame\ndf1 = pd.DataFrame(data1)\n\n# Display the DataFrame without the index\nHTML(df1.to_html(index=False))\n# print(df1.to_string(index=False))\n\n\n\n\n\nA\nB\nC\nD\n\n\n\n\nα\nα\n1\n7\n\n\nα\nβ\n5\n7\n\n\nβ\nβ\n12\n3\n\n\nβ\nβ\n23\n10\n\n\n\n\n\n\\[\nr\n\\]\n\n\nCode\n# Selection operation: A = B and D &gt; 5\nselected_df_1 = df1[(df1['A'] == df1['B']) & (df1['D'] &gt; 5)]\n\n# Display the DataFrame without the index\nHTML(selected_df_1.to_html(index=False))\n\n\n\n\n\nA\nB\nC\nD\n\n\n\n\nα\nα\n1\n7\n\n\nβ\nβ\n23\n10\n\n\n\n\n\n\\[\n\\sigma_{A=B\\wedge D&gt;5}(r)\n\\]",
+    "crumbs": [
+      "DBMS",
+      "Week 4"
+    ]
+  },
+  {
+    "objectID": "pages/w4.html#project-operation",
+    "href": "pages/w4.html#project-operation",
+    "title": "DBMS - Week 4",
+    "section": "",
+    "text": "Notation: \\(\\Pi_{A_1, A_2, \\ldots, A_k}(r)\\)\nwhere \\(A_1, A_2, \\ldots, A_k\\) are attributes of relation \\(r\\)\nThe result is defined as the relation of \\(k\\) columns obtained by deleting columns other than \\(A_1, A_2, \\ldots, A_k\\) from \\(r\\)\nDuplicate rows are automatically eliminated, since the result is a set\n\n\n\n\n\nCode\nrelation2 = {\n    'A': ['α', 'α', 'β', 'β'],\n    'B': [10, 20, 30, 40],\n    'C': [1, 1, 1, 2]\n}\n\n# Create DataFrame\ndf2 = pd.DataFrame(relation2)\n\n# Display the DataFrame without the index\nHTML(df2.to_html(index=False))\n\n\n\n\n\nA\nB\nC\n\n\n\n\nα\n10\n1\n\n\nα\n20\n1\n\n\nβ\n30\n1\n\n\nβ\n40\n2\n\n\n\n\n\n\\[\nr\n\\]\n\n\nCode\nprojected_df_1 = df2[['A', 'C']].drop_duplicates()\n\n# Display the projected DataFrame without duplicates\nHTML(projected_df_1.to_html(index=False))\n\n\n\n\n\nA\nC\n\n\n\n\nα\n1\n\n\nβ\n1\n\n\nβ\n2\n\n\n\n\n\n\\[\n\\Pi_{A, C}(r)\n\\]",
+    "crumbs": [
+      "DBMS",
+      "Week 4"
+    ]
+  },
+  {
+    "objectID": "pages/w4.html#union-operation",
+    "href": "pages/w4.html#union-operation",
+    "title": "DBMS - Week 4",
+    "section": "",
+    "text": "Notation: \\(r \\cup s\\)\nDefined as: \\(r \\cup s = \\{t \\mid t \\in r \\text{ or } t \\in s \\}\\)\nFor \\(r \\cup s\\) to be valid\n\n\\(r\\) and \\(s\\) must have the same arity (same number of attributes)\nThe attribute domains must be compatible (same type)\n\n\n\n\n\n\nCode\nr = {\n    'A': ['α', 'α', 'β'],\n    'B': [1, 2, 1]\n}\n\n# Create DataFrame\ndf_r = pd.DataFrame(r)\n\n\ns = {\n    'A': ['α', 'β'],\n    'B': [2, 3]\n}\n\n# Create DataFrame\ndf_s = pd.DataFrame(s)\n\n# Display the DataFrame without the index\nHTML(df_r.to_html(index=False))\n\n\n\n\n\nA\nB\n\n\n\n\nα\n1\n\n\nα\n2\n\n\nβ\n1\n\n\n\n\n\n\\[\nr\n\\]\n\n\nCode\n# Display the DataFrame without the index\nHTML(df_s.to_html(index=False))\n\n\n\n\n\nA\nB\n\n\n\n\nα\n2\n\n\nβ\n3\n\n\n\n\n\n\\[\ns\n\\]\n\n\nCode\n# Union operation\nunion_df = pd.concat([df_r, df_s]).drop_duplicates()\n\n# Display the DataFrame without the index\nHTML(union_df.to_html(index=False))\n\n\n\n\n\nA\nB\n\n\n\n\nα\n1\n\n\nα\n2\n\n\nβ\n1\n\n\nβ\n3\n\n\n\n\n\n\n\\[\nr \\cup s\n\\]",
+    "crumbs": [
+      "DBMS",
+      "Week 4"
+    ]
+  },
+  {
+    "objectID": "pages/w4.html#difference-operation",
+    "href": "pages/w4.html#difference-operation",
+    "title": "DBMS - Week 4",
+    "section": "",
+    "text": "Notation: \\(r - s\\)\nDefined as: \\(r - s = \\{t \\mid t \\in r \\text{ and } t \\notin s \\}\\)\nSet differences must be taken between compatible relations\n\n\\(r\\) and \\(s\\) must have the same arity\nThe attribute domains must be compatible\n\n\n\n\n\n\nCode\nr = {\n    'A': ['α', 'α', 'β'],\n    'B': [1, 2, 1]\n}\n\n# Create DataFrame\ndf_r = pd.DataFrame(r)\n\ns = {\n    'A': ['α', 'β'],\n    'B': [2, 3]\n}\n\n# Create DataFrame\ndf_s = pd.DataFrame(s)\n\n# Display the DataFrame without the index\nHTML(df_r.to_html(index=False))\n\n\n\n\n\nA\nB\n\n\n\n\nα\n1\n\n\nα\n2\n\n\nβ\n1\n\n\n\n\n\n\\[\nr\n\\]\n\n\nCode\n# Display the DataFrame without the index\nHTML(df_s.to_html(index=False))\n\n\n\n\n\nA\nB\n\n\n\n\nα\n2\n\n\nβ\n3\n\n\n\n\n\n\\[\ns\n\\]\n\n\nCode\n# Difference operation\ndifference_df = df_r.merge(df_s, on=['A', 'B'], how='left', indicator=True).query('_merge == \"left_only\"').drop(columns=['_merge'])\n\n# Display the set difference DataFrame without the index\ndisplay(HTML(difference_df.to_html(index=False)))\n\n\n\n\n\nA\nB\n\n\n\n\nα\n1\n\n\nβ\n1\n\n\n\n\n\n\\[\nr - s\n\\]",
+    "crumbs": [
+      "DBMS",
+      "Week 4"
+    ]
+  },
+  {
+    "objectID": "pages/w4.html#intersection-operation",
+    "href": "pages/w4.html#intersection-operation",
+    "title": "DBMS - Week 4",
+    "section": "",
+    "text": "Notation: \\(r \\cap s\\)\nDefined as: \\(r \\cap s = \\{t \\mid t \\in r \\text{ and } t \\in s \\}\\)\nAssume:\n\n\\(r\\), \\(s\\) have the same arity\nAttributes of \\(r\\) and \\(s\\) are compatible\n\nNote: \\(r \\cap s = r - (r - s)\\)\n\n\n\n\n\nCode\nimport pandas as pd\nfrom IPython.display import HTML\n\n# Relation r\nr = {\n    'A': ['α', 'α', 'β'],\n    'B': [1, 2, 1]\n}\n\n# Create DataFrame for r\ndf_r = pd.DataFrame(r)\n\n# Relation s\ns = {\n    'A': ['α', 'β'],\n    'B': [2, 3]\n}\n\n# Create DataFrame for s\ndf_s = pd.DataFrame(s)\n\n# Display the DataFrame without the index\nHTML(df_r.to_html(index=False))\n\n\n\n\n\nA\nB\n\n\n\n\nα\n1\n\n\nα\n2\n\n\nβ\n1\n\n\n\n\n\n\\[\nr\n\\]\n\n\nCode\n# Display the DataFrame without the index\nHTML(df_s.to_html(index=False))\n\n\n\n\n\nA\nB\n\n\n\n\nα\n2\n\n\nβ\n3\n\n\n\n\n\n\\[\ns\n\\]\n\n\nCode\n# Intersection operation\nintersection_df = pd.merge(df_r, df_s, on=['A', 'B'], how='inner')\n\n# Display the intersection DataFrame without the index\ndisplay(HTML(intersection_df.to_html(index=False)))\n\n\n\n\n\nA\nB\n\n\n\n\nα\n2\n\n\n\n\n\n\\[\nr \\cap s\n\\]",
+    "crumbs": [
+      "DBMS",
+      "Week 4"
+    ]
+  },
+  {
+    "objectID": "pages/w4.html#cartesian-product-operation",
+    "href": "pages/w4.html#cartesian-product-operation",
+    "title": "DBMS - Week 4",
+    "section": "",
+    "text": "Notation: \\(r \\times s\\)\nDefined as: \\(r \\times s = \\{t_1, t_2 \\mid t_1 \\in r \\text{ and } t_2 \\in s \\}\\)\nAssume that attributes of \\(r\\) and \\(s\\) are disjoint (no common attributes)\nIf attributes are not disjoint, use rename operation to make them disjoint\n\n\n\n\n\nCode\nimport pandas as pd\nfrom IPython.display import HTML\n\n# Relation r\nr = {\n    'A': ['α', 'β'],\n    'B': [1, 2]\n}\n\n# Create DataFrame for r\ndf_r = pd.DataFrame(r)\n\n# Relation s\ns = {\n    'C': ['α', 'β', 'β', 'γ'],\n    'D': [10, 10, 20, 10],\n    'E': ['a', 'a', 'b', 'b']\n}\n\n# Create DataFrame for s\ndf_s = pd.DataFrame(s)\n\n# Display the original DataFrames without the index\ndisplay(HTML(df_r.to_html(index=False)))\n\n\n\n\n\nA\nB\n\n\n\n\nα\n1\n\n\nβ\n2\n\n\n\n\n\n\\[\nr\n\\]\n\n\nCode\ndisplay(HTML(df_s.to_html(index=False)))\n\n\n\n\n\nC\nD\nE\n\n\n\n\nα\n10\na\n\n\nβ\n10\na\n\n\nβ\n20\nb\n\n\nγ\n10\nb\n\n\n\n\n\n\\[\ns\n\\]\n\n\nCode\n# Cartesian product of df_r and df_s\ncartesian_product_df = pd.merge(df_r.assign(key=1), df_s.assign(key=1), on='key').drop('key', axis=1)\n\n# Display the Cartesian product DataFrame without the index\ndisplay(HTML(cartesian_product_df.to_html(index=False)))\n\n\n\n\n\nA\nB\nC\nD\nE\n\n\n\n\nα\n1\nα\n10\na\n\n\nα\n1\nβ\n10\na\n\n\nα\n1\nβ\n20\nb\n\n\nα\n1\nγ\n10\nb\n\n\nβ\n2\nα\n10\na\n\n\nβ\n2\nβ\n10\na\n\n\nβ\n2\nβ\n20\nb\n\n\nβ\n2\nγ\n10\nb\n\n\n\n\n\n\\[\nr \\times s\n\\]",
+    "crumbs": [
+      "DBMS",
+      "Week 4"
+    ]
+  },
+  {
+    "objectID": "pages/w4.html#rename-operation",
+    "href": "pages/w4.html#rename-operation",
+    "title": "DBMS - Week 4",
+    "section": "",
+    "text": "Allows us to name, and therefore to refer to, the result of a relational-algebra expression\nAllows us to refer to a relation by more than one name\nExample:\n\\(\\rho_{X}(E)\\)\nreturns the relation \\(E\\) under the name \\(X\\)\nIf a relational-algebra expression \\(E\\) has arity \\(n\\), then \\[\n\\rho_{X(A_1, A_2, \\ldots, A_n)}(E)\n\\] returns the result of the expression \\(E\\) under the name \\(X\\), and with the attributes renamed to \\[\nA_1, A_2, \\ldots, A_n\n\\]\n\n\n\n\n\nCode\nimport pandas as pd\nfrom IPython.display import HTML\n\n# Relation r\nr = {\n    'A': ['α', 'β'],\n    'B': [1, 2]\n}\n\n# Create DataFrame for r\ndf_r = pd.DataFrame(r)\n\n# Relation r's duplicate relation s\ndf_s = pd.DataFrame(r)\n\n# Display the original DataFrame without the index\ndisplay(HTML(df_r.to_html(index=False)))\n\n\n\n\n\nA\nB\n\n\n\n\nα\n1\n\n\nβ\n2\n\n\n\n\n\n\\[\nr\n\\]\n\n\nCode\n# Cartesian product of df_r and df_s\ncartesian_product_df = pd.merge(df_r.assign(key=1), df_s.assign(key=1), on='key').drop('key', axis=1)\n\n# Rename the columns to make them unique\ncartesian_product_df.columns = ['r.A', 'r.B', 's.A','s.B']\n\n# Display the Cartesian product DataFrame without the index\ndisplay(HTML(cartesian_product_df.to_html(index=False)))\n\n\n\n\n\nr.A\nr.B\ns.A\ns.B\n\n\n\n\nα\n1\nα\n1\n\n\nα\n1\nβ\n2\n\n\nβ\n2\nα\n1\n\n\nβ\n2\nβ\n2\n\n\n\n\n\n\\[\nr \\times \\rho_{s}(r)\n\\]",
+    "crumbs": [
+      "DBMS",
+      "Week 4"
+    ]
+  },
+  {
+    "objectID": "pages/w4.html#division-operation",
+    "href": "pages/w4.html#division-operation",
+    "title": "DBMS - Week 4",
+    "section": "",
+    "text": "The division operation is applied to two relations\n\\(R(Z) \\div S(X)\\), where \\(X\\) is a subset of \\(Z\\). Let \\(Y = Z - X\\) (hence \\(Z = X \\cup Y\\)); that is, let \\(Y\\) be the set of attributes of \\(R\\) that are not in \\(S\\)\nThe result of the division operation is a relation \\(T(Y)\\) that includes a tuple \\(t\\) if tuples \\(t_R\\) appear in \\(R\\) with \\(t_R[Y] = t\\), and with\n\n\\(t_R[X] = t_S\\) for all tuples \\(t_S\\) in \\(S\\)\n\nFor a tuple \\(t\\) to appear in the result \\(T\\) of the division operation, the values in \\(t\\) must appear in \\(R\\) with all possible combinations of values in \\(S\\)\nDivision is a derived operation, and can be expressed in terms of the basic operations of relational algebra\n\\(r \\div s \\equiv \\Pi_{R - S}(r) - \\Pi_{R - S}(r)((\\Pi_{R - S}(r) \\times s) - \\Pi_{R-S,S}(r))\\)\n\n\n\n\n\nCode\nimport pandas as pd\nfrom IPython.display import HTML\ndata1 = {\n    'Lecturer': ['Brown', 'Brown', 'Green', 'Green', 'Lewis', 'Smith'],\n    'Module': ['Compilers', 'Databases', 'Prolog', 'Databases', 'Prolog', 'Databases']\n}\n\n# Create DataFrame\ndf1 = pd.DataFrame(data1)\n\n# Display the DataFrame without the index\nHTML(df1.to_html(index=False))\n\n\n\n\n\nLecturer\nModule\n\n\n\n\nBrown\nCompilers\n\n\nBrown\nDatabases\n\n\nGreen\nProlog\n\n\nGreen\nDatabases\n\n\nLewis\nProlog\n\n\nSmith\nDatabases\n\n\n\n\n\n\\[\nR\n\\]\n\n\nCode\ndata2 = {\n    'Subject': ['Prolog']\n}\n\n# Create DataFrame\ndf2 = pd.DataFrame(data2)\n\n# Display the DataFrame without the index\nHTML(df2.to_html(index=False))\n\n\n\n\n\nSubject\n\n\n\n\nProlog\n\n\n\n\n\n\\[\nS\n\\]\n\n\nCode\n# Division operation\ndivision_df = df1.groupby('Lecturer').Module.apply(set).reset_index()\ndivision_df = division_df[division_df['Module'].apply(lambda x: df2['Subject'].values[0] in x)]\ndivision_df = division_df.drop(columns='Module')\n\n# Display the division DataFrame without the index\ndisplay(HTML(division_df.to_html(index=False)))\n\n\n\n\n\nLecturer\n\n\n\n\nGreen\n\n\nLewis\n\n\n\n\n\n\\[\nR \\mid S\n\\]",
+    "crumbs": [
+      "DBMS",
+      "Week 4"
+    ]
   }
 ]
